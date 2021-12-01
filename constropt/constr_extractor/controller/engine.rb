@@ -1,9 +1,9 @@
 require 'yard'
 require 'pathname'
 
-require_relative 'class_node'
-require_relative 'traversor'
-require_relative 'populate_tablename'
+require_relative '../model/class_node'
+require_relative '../controller/traversor'
+require_relative '../controller/populate_tablename'
 
 class Engine
   def initialize(dir)

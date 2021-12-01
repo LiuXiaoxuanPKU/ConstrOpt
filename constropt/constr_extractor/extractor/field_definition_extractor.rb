@@ -1,0 +1,2 @@
+class FieldDefinitionExtractor < Extractor
+end

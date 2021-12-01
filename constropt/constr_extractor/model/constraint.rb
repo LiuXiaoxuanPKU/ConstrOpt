@@ -54,9 +54,19 @@ end
 class FormatConstraint < Constraint
   attr_accessor :format
 
-  def initialize(field_name, format_regex, db=false)
+  def initialize(field_name, format_regex, db = false)
     @field_name = field_name
     @format = format_regex
+    @db = db
+  end
+end
+
+class ForeignKeyConstraint < Constraint
+  attr_accessor :ref_class
+
+  def initialize(field_name, ref_class, db = false)
+    @field_name = field_name
+    @ref_class = ref_class
     @db = db
   end
 end
