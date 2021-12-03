@@ -3,6 +3,7 @@ require_relative 'constraint'
 
 class DBExtractor < Extractor
   def initialize(filename)
+    @schema = {}
     @table_dbconstraint_map = extract_from_schema(filename)
   end
 

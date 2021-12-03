@@ -7,6 +7,17 @@ class Constraint
   attr_accessor :class_name, :field_name, :db
 end
 
+class NumericalConstraint < Constraint
+  attr_accessor :min, :max
+
+  def initialize(field, min, max, db=false)
+    @field_name = field
+    @min = min
+    @max = max
+    @db = db
+  end
+end
+
 class InclusionConstraint < Constraint
   attr_accessor :values, :type
 
