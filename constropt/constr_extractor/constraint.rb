@@ -72,17 +72,6 @@ class NumericalConstraint < Constraint
   end
 end
 
-class HasOneConstraint < Constraint
-  attr_accessor :class_name, :foreign_key, :callable, :dependent
-
-  def initialize(field, class_name, foreign_key, callable, dependent, db = false, allow_nil = false)
-    super(field, db, allow_nil)
-    @class_name = class_name
-    @foreign_key = foreign_key
-    @callable = callable
-    @dependent = dependent
-  end
-end
 
 class HasManyConstraint < Constraint
   attr_accessor :class_name, :foreign_key, :callable, :dependent, :inverse_of, :through, :as, :extend
@@ -100,35 +89,27 @@ class HasManyConstraint < Constraint
   end
 end
 
-class BelongsToConstraint < Constraint
-  attr_accessor :class_name, :polymorphic, :counter_cache
-
-  def initialize(field, class_name, polymorphic, counter_cache, db = false, allow_nil = false)
-    super(field, db, allow_nil)
-    @class_name = class_name
-    @polymorphic = polymorphic
-    @counter_cache = counter_cache
-  end
-end
-
 class ForeignKeyConstraint < Constraint
-  attr_accessor :class_name, :fk_column_name
+  attr_accessor :class_name, :fk_column_name, :polymorphic
 
-  def initialize(field, class_name, fk_column_name, db = false, allow_nil = true)
+  def initialize(field, class_name, fk_column_name, polymorphic, db = false, allow_nil = true)
     super(field, db, allow_nil)
     @field_name = field
     @class_name = class_name
     @fk_column_name = fk_column_name
+    @polymorphic = polymorphic
   end
 end
 
-class HasOneConstraint < Constraint
-  attr_accessor :class_name, :foreign_key
+class HasOneManyConstraint < Constraint
+  attr_accessor :class_name, :foreign_key, :as_field, :type
 
-  def initialize(field, class_name, foreign_key, db=false)
+  def initialize(field, class_name, foreign_key, as_field, type, through, db=false)
     @field_name = field
     @class_name = class_name
     @foreign_key = foreign_key
+    @as_field = as_field
     @db = db
+    @type = type
   end
 end

@@ -18,7 +18,7 @@ class DBExtractor < Extractor
     # presence constraint
     if line.include? 'null: false'
       field = tokens[0].split(' ')[1][1..-2]
-      return PresenceConstraint.new(field, nil, allow_nil:true)
+      return PresenceConstraint.new(field, nil, db=true, allow_nil=false)
     end
     nil
   end

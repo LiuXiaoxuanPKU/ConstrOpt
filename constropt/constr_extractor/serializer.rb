@@ -34,10 +34,15 @@ class Serializer
     node.constraints.each do |c|
       c.cond = c.cond.to_s if c.class.method_defined? :cond
     end
+    # only serialize constraints of specific types
+    skip_types = [
+      HasOneManyConstraint
+    ]
+    dump_constrains = node.constraints.reject { |c| skip_types.include? c.class }
     obj = {
       table: node.table,
       class: node.name,
-      constraints: (JSON.parse Oj.dump(node.constraints))
+      constraints: (JSON.parse Oj.dump(dump_constrains))
     }
     return obj
   end

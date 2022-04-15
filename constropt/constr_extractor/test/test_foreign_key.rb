@@ -94,7 +94,43 @@ def test_ho_explicit
   raise "expect fk_column_name = 't_id', get #{foreign_key} instead" unless foreign_key == 't_id'
 end
 
+def test_ho_as
+  class_def = <<-FOO
+    class Employee < ApplicationRecord
+      has_one :picture, as: :imageable
+    end
+  FOO
+  node = ClassNode.new('Employee')
+  node.ast = YARD::Parser::Ruby::RubyParser.parse(class_def).root[0]
+
+  e = BuiltinExtractor.new
+  e.visit(node, {})
+
+  as_field = node.constraints[0].as_field
+
+  raise "expect as_field = ':imageable', get #{as_field} instead" unless as_field == 'imageable'
+end
+
+def test_fk_polymorphic
+  belong_to_def = <<-FOO
+    class Picture < ApplicationRecord
+      belongs_to :imageable, polymorphic: true
+    end
+  FOO
+  belong_to_node = ClassNode.new('Picture')
+  belong_to_node.ast = YARD::Parser::Ruby::RubyParser.parse(belong_to_def).root[0]
+
+  e = BuiltinExtractor.new
+  e.visit(belong_to_node, {})
+
+  polymorphic = belong_to_node.constraints[0].polymorphic
+
+  raise "expect polymorphic = 'true', get #{polymorphic} instead" unless polymorphic == true
+end
+
 test_fk_defaults
 test_fk_explicit
 test_ho_defaults
 test_ho_explicit
+test_ho_as
+test_fk_polymorphic

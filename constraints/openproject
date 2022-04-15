@@ -67,7 +67,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Container",
-        "fk_column_name": "container_id"
+        "fk_column_name": "container_id",
+        "polymorphic": true
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -75,7 +76,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "User",
-        "fk_column_name": "author_id"
+        "fk_column_name": "author_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -605,7 +607,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Project",
-        "fk_column_name": "context_id"
+        "fk_column_name": "context_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -613,7 +616,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Principal",
-        "fk_column_name": "principal_id"
+        "fk_column_name": "principal_id",
+        "polymorphic": null
       },
       {
         "^o": "UniqueConstraint",
@@ -638,7 +642,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Project",
-        "fk_column_name": "project_id"
+        "fk_column_name": "project_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -646,7 +651,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Principal",
-        "fk_column_name": "assigned_to_id"
+        "fk_column_name": "assigned_to_id",
+        "polymorphic": null
       },
       {
         "^o": "UniqueConstraint",
@@ -719,7 +725,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Changeset",
-        "fk_column_name": "changeset_id"
+        "fk_column_name": "changeset_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -787,7 +794,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Repository",
-        "fk_column_name": "repository_id"
+        "fk_column_name": "repository_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -795,7 +803,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "User",
-        "fk_column_name": "user_id"
+        "fk_column_name": "user_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -937,7 +946,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Commented",
-        "fk_column_name": "commented_id"
+        "fk_column_name": "commented_id",
+        "polymorphic": true
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -945,7 +955,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "User",
-        "fk_column_name": "author_id"
+        "fk_column_name": "author_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -967,6 +978,16 @@
         "db": false,
         "allow_nil": false,
         "cond": ""
+      },
+      {
+        "^o": "InclusionConstraint",
+        "field_name": "commented_type",
+        "db": false,
+        "allow_nil": false,
+        "values": [
+          "News"
+        ],
+        "type": "polymorphic"
       },
       {
         "^o": "LengthConstraint",
@@ -1308,7 +1329,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Custom_field",
-        "fk_column_name": "custom_field_id"
+        "fk_column_name": "custom_field_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -1379,7 +1401,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Custom_field",
-        "fk_column_name": "custom_field_id"
+        "fk_column_name": "custom_field_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -1387,7 +1410,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Customized",
-        "fk_column_name": "customized_id"
+        "fk_column_name": "customized_id",
+        "polymorphic": true
       },
       {
         "^o": "LengthConstraint",
@@ -1497,7 +1521,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Project",
-        "fk_column_name": "project_id"
+        "fk_column_name": "project_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -1585,7 +1610,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Project",
-        "fk_column_name": "project_id"
+        "fk_column_name": "project_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -1685,7 +1711,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Color",
-        "fk_column_name": "color_id"
+        "fk_column_name": "color_id",
+        "polymorphic": null
       },
       {
         "^o": "UniqueConstraint",
@@ -1786,7 +1813,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Project",
-        "fk_column_name": "project_id"
+        "fk_column_name": "project_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -1794,7 +1822,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Message",
-        "fk_column_name": ":last_message_id"
+        "fk_column_name": ":last_message_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -1877,7 +1906,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Group",
-        "fk_column_name": "group_id"
+        "fk_column_name": "group_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -1885,7 +1915,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "User",
-        "fk_column_name": "user_id"
+        "fk_column_name": "user_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -1924,7 +1955,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "User",
-        "fk_column_name": "author_id"
+        "fk_column_name": "author_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -1932,7 +1964,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Journal",
-        "fk_column_name": "journal_id"
+        "fk_column_name": "journal_id",
+        "polymorphic": null
       },
       {
         "^o": "UniqueConstraint",
@@ -1957,7 +1990,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Attachment",
-        "fk_column_name": "attachment_id"
+        "fk_column_name": "attachment_id",
+        "polymorphic": null
       },
       {
         "^o": "UniqueConstraint",
@@ -1982,7 +2016,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Custom_field",
-        "fk_column_name": "custom_field_id"
+        "fk_column_name": "custom_field_id",
+        "polymorphic": null
       },
       {
         "^o": "UniqueConstraint",
@@ -2007,7 +2042,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "User",
-        "fk_column_name": "author_id"
+        "fk_column_name": "author_id",
+        "polymorphic": null
       },
       {
         "^o": "UniqueConstraint",
@@ -2066,7 +2102,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Forum",
-        "fk_column_name": "forum_id"
+        "fk_column_name": "forum_id",
+        "polymorphic": null
       },
       {
         "^o": "UniqueConstraint",
@@ -2091,7 +2128,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Project",
-        "fk_column_name": "project_id"
+        "fk_column_name": "project_id",
+        "polymorphic": null
       },
       {
         "^o": "UniqueConstraint",
@@ -2133,7 +2171,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Project",
-        "fk_column_name": "project_id"
+        "fk_column_name": "project_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -2141,7 +2180,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Principal",
-        "fk_column_name": "assigned_to_id"
+        "fk_column_name": "assigned_to_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -2149,7 +2189,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Principal",
-        "fk_column_name": "responsible_id"
+        "fk_column_name": "responsible_id",
+        "polymorphic": null
       },
       {
         "^o": "UniqueConstraint",
@@ -2186,7 +2227,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "User",
-        "fk_column_name": "user_id"
+        "fk_column_name": "user_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -2194,7 +2236,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Journable",
-        "fk_column_name": "journable_id"
+        "fk_column_name": "journable_id",
+        "polymorphic": true
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -2202,7 +2245,18 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Data",
-        "fk_column_name": "data_id"
+        "fk_column_name": "data_id",
+        "polymorphic": true
+      },
+      {
+        "^o": "InclusionConstraint",
+        "field_name": "data_type",
+        "db": false,
+        "allow_nil": false,
+        "values": [
+          "Journal::BaseJournal"
+        ],
+        "type": "polymorphic"
       },
       {
         "^o": "UniqueConstraint",
@@ -2227,7 +2281,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Principal",
-        "fk_column_name": "user_id"
+        "fk_column_name": "user_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -2235,7 +2290,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Project",
-        "fk_column_name": "project_id"
+        "fk_column_name": "project_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -2292,7 +2348,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Member",
-        "fk_column_name": "member_id"
+        "fk_column_name": "member_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -2300,7 +2357,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Role",
-        "fk_column_name": "role_id"
+        "fk_column_name": "role_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -2346,7 +2404,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "MenuItem",
-        "fk_column_name": "parent_id"
+        "fk_column_name": "parent_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -2421,7 +2480,17 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Query",
-        "fk_column_name": "navigatable_id"
+        "fk_column_name": "navigatable_id",
+        "polymorphic": null
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": "navigatable_id",
+        "db": false,
+        "allow_nil": false,
+        "cond": "",
+        "case_sensitive": true,
+        "scope": null
       },
       {
         "^o": "UniqueConstraint",
@@ -2446,7 +2515,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Wiki",
-        "fk_column_name": "navigatable_id"
+        "fk_column_name": "navigatable_id",
+        "polymorphic": null
       },
       {
         "^o": "UniqueConstraint",
@@ -2471,7 +2541,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Forum",
-        "fk_column_name": "forum_id"
+        "fk_column_name": "forum_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -2479,7 +2550,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "User",
-        "fk_column_name": "author_id"
+        "fk_column_name": "author_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -2487,7 +2559,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Message",
-        "fk_column_name": "last_reply_id"
+        "fk_column_name": "last_reply_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -2576,7 +2649,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Project",
-        "fk_column_name": "project_id"
+        "fk_column_name": "project_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -2584,7 +2658,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "User",
-        "fk_column_name": "author_id"
+        "fk_column_name": "author_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -2654,7 +2729,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "User",
-        "fk_column_name": "recipient_id"
+        "fk_column_name": "recipient_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -2662,7 +2738,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "User",
-        "fk_column_name": "actor_id"
+        "fk_column_name": "actor_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -2670,7 +2747,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Project",
-        "fk_column_name": "project_id"
+        "fk_column_name": "project_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -2678,7 +2756,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Journal",
-        "fk_column_name": "journal_id"
+        "fk_column_name": "journal_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -2686,7 +2765,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Resource",
-        "fk_column_name": "resource_id"
+        "fk_column_name": "resource_id",
+        "polymorphic": true
       },
       {
         "^o": "LengthConstraint",
@@ -2770,7 +2850,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Project",
-        "fk_column_name": "project_id"
+        "fk_column_name": "project_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -2778,7 +2859,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "User",
-        "fk_column_name": "user_id"
+        "fk_column_name": "user_id",
+        "polymorphic": null
       },
       {
         "^o": "UniqueConstraint",
@@ -2844,7 +2926,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Query",
-        "fk_column_name": "query_id"
+        "fk_column_name": "query_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -2852,7 +2935,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Work_package",
-        "fk_column_name": "work_package_id"
+        "fk_column_name": "work_package_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -3040,7 +3124,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Auth_source",
-        "fk_column_name": "auth_source_id"
+        "fk_column_name": "auth_source_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -3258,6 +3343,15 @@
         "max": -1
       },
       {
+        "^o": "UniqueConstraint",
+        "field_name": "wikipage_id",
+        "db": false,
+        "allow_nil": false,
+        "cond": "",
+        "case_sensitive": true,
+        "scope": null
+      },
+      {
         "^o": "PresenceConstraint",
         "field_name": "name",
         "db": true,
@@ -3403,7 +3497,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "User",
-        "fk_column_name": "user_id"
+        "fk_column_name": "user_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -4303,6 +4398,15 @@
     "constraints": [
       {
         "^o": "UniqueConstraint",
+        "field_name": "user_id",
+        "db": false,
+        "allow_nil": false,
+        "cond": "",
+        "case_sensitive": true,
+        "scope": null
+      },
+      {
+        "^o": "UniqueConstraint",
         "field_name": "id",
         "db": false,
         "allow_nil": false,
@@ -4371,6 +4475,15 @@
     "constraints": [
       {
         "^o": "UniqueConstraint",
+        "field_name": "user_id",
+        "db": false,
+        "allow_nil": false,
+        "cond": "",
+        "case_sensitive": true,
+        "scope": null
+      },
+      {
+        "^o": "UniqueConstraint",
         "field_name": "id",
         "db": false,
         "allow_nil": false,
@@ -4392,7 +4505,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Project",
-        "fk_column_name": "project_id"
+        "fk_column_name": "project_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -4400,7 +4514,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "User",
-        "fk_column_name": "user_id"
+        "fk_column_name": "user_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -4468,7 +4583,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Project",
-        "fk_column_name": "project_id"
+        "fk_column_name": "project_id",
+        "polymorphic": null
       },
       {
         "^o": "LengthConstraint",
@@ -4489,6 +4605,15 @@
           "Repository::Subversion"
         ],
         "type": "class_inheritance"
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": "project_id",
+        "db": false,
+        "allow_nil": false,
+        "cond": "",
+        "case_sensitive": true,
+        "scope": null
       },
       {
         "^o": "PresenceConstraint",
@@ -4714,7 +4839,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Role",
-        "fk_column_name": "role_id"
+        "fk_column_name": "role_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -4815,7 +4941,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Color",
-        "fk_column_name": "color_id"
+        "fk_column_name": "color_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -4861,6 +4988,15 @@
           "Status::InexistentStatus"
         ],
         "type": "class_inheritance"
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": "project_id",
+        "db": false,
+        "allow_nil": false,
+        "cond": "",
+        "case_sensitive": true,
+        "scope": null
       },
       {
         "^o": "LengthConstraint",
@@ -4938,7 +5074,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Color",
-        "fk_column_name": "color_id"
+        "fk_column_name": "color_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -5011,7 +5148,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "User",
-        "fk_column_name": "user_id"
+        "fk_column_name": "user_id",
+        "polymorphic": null
       },
       {
         "^o": "InclusionConstraint",
@@ -5112,7 +5250,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "User",
-        "fk_column_name": "user_id"
+        "fk_column_name": "user_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -5120,6 +5259,15 @@
         "db": false,
         "allow_nil": false,
         "cond": ""
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": "user_id",
+        "db": false,
+        "allow_nil": false,
+        "cond": "",
+        "case_sensitive": true,
+        "scope": null
       },
       {
         "^o": "PresenceConstraint",
@@ -5151,7 +5299,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Project",
-        "fk_column_name": "project_id"
+        "fk_column_name": "project_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -5241,7 +5390,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Watchable",
-        "fk_column_name": "watchable_id"
+        "fk_column_name": "watchable_id",
+        "polymorphic": true
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -5249,7 +5399,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "User",
-        "fk_column_name": "user_id"
+        "fk_column_name": "user_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -5314,7 +5465,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Project",
-        "fk_column_name": "project_id"
+        "fk_column_name": "project_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -5322,6 +5474,15 @@
         "db": false,
         "allow_nil": false,
         "cond": ""
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": "project_id",
+        "db": false,
+        "allow_nil": false,
+        "cond": "",
+        "case_sensitive": true,
+        "scope": null
       },
       {
         "^o": "PresenceConstraint",
@@ -5381,7 +5542,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "WikiPage",
-        "fk_column_name": "page_id"
+        "fk_column_name": "page_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -5389,7 +5551,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "User",
-        "fk_column_name": "author_id"
+        "fk_column_name": "author_id",
+        "polymorphic": null
       },
       {
         "^o": "LengthConstraint",
@@ -5398,6 +5561,15 @@
         "allow_nil": false,
         "min": null,
         "max": 255
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": "page_id",
+        "db": false,
+        "allow_nil": false,
+        "cond": "",
+        "case_sensitive": true,
+        "scope": null
       },
       {
         "^o": "PresenceConstraint",
@@ -5443,7 +5615,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Wiki",
-        "fk_column_name": "wiki_id"
+        "fk_column_name": "wiki_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -5524,7 +5697,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Wiki",
-        "fk_column_name": "wiki_id"
+        "fk_column_name": "wiki_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
@@ -5593,7 +5767,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Project",
-        "fk_column_name": "project_id"
+        "fk_column_name": "project_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -5601,7 +5776,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Type",
-        "fk_column_name": "type_id"
+        "fk_column_name": "type_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -5609,7 +5785,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Status",
-        "fk_column_name": "status_id"
+        "fk_column_name": "status_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -5617,7 +5794,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "User",
-        "fk_column_name": "author_id"
+        "fk_column_name": "author_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -5625,7 +5803,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Principal",
-        "fk_column_name": "assigned_to_id"
+        "fk_column_name": "assigned_to_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -5633,7 +5812,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Principal",
-        "fk_column_name": "responsible_id"
+        "fk_column_name": "responsible_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -5641,7 +5821,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Version",
-        "fk_column_name": "version_id"
+        "fk_column_name": "version_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -5649,7 +5830,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "IssuePriority",
-        "fk_column_name": "priority_id"
+        "fk_column_name": "priority_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -5657,7 +5839,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Category",
-        "fk_column_name": "category_id"
+        "fk_column_name": "category_id",
+        "polymorphic": null
       },
       {
         "^o": "InclusionConstraint",
@@ -5759,7 +5942,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Role",
-        "fk_column_name": "role_id"
+        "fk_column_name": "role_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -5767,7 +5951,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Status",
-        "fk_column_name": "old_status_id"
+        "fk_column_name": "old_status_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -5775,7 +5960,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Status",
-        "fk_column_name": "new_status_id"
+        "fk_column_name": "new_status_id",
+        "polymorphic": null
       },
       {
         "^o": "ForeignKeyConstraint",
@@ -5783,7 +5969,8 @@
         "db": false,
         "allow_nil": true,
         "class_name": "Type",
-        "fk_column_name": "type_id"
+        "fk_column_name": "type_id",
+        "polymorphic": null
       },
       {
         "^o": "PresenceConstraint",
