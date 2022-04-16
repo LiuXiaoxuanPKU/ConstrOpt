@@ -44,6 +44,13 @@ if __name__ == '__main__':
     total_verified_cnt = 0
     only_rewrite = False
     dump_counter = False # only dump counter example
+
+    enumerate_time = 0
+    get_cost_time = 0
+    run_test_time = 0
+    sort_time = 0
+    dump_time = 0
+
     for q in tqdm(queries):
         start = time.time()
         # =================Enumerate Candidates================
@@ -58,7 +65,9 @@ if __name__ == '__main__':
         if len(rewritten_queries) == 0:
             continue
             
-            
+        end = time.time()
+        enumerate_time += end-start
+        start = end
         # ======== Estimate cost and retain those with lower cost than original ======
         rewritten_queries_lower_cost = []
         # replace placeholder with actual parameters for org and rewrites
@@ -87,7 +96,9 @@ if __name__ == '__main__':
         if len(rewritten_queries_lower_cost) == 0:
             continue
         
-        
+        end = time.time()
+        get_cost_time += end-start
+        start = end
         # ======== Run test and retain those that pass =========
         rewritten_queries_lower_cost_after_test = []
         not_eq_qs = []
@@ -104,17 +115,29 @@ if __name__ == '__main__':
         if len(rewritten_queries_lower_cost_after_test) == 0:
             continue
        
-       
+        end = time.time()
+        run_test_time += end-start
+        start = end
         # ========= Sort rewrites that pass tests ============
         # Sort the list in place
         rewritten_queries_lower_cost_after_test.sort(key=lambda x: x.estimate_cost, reverse=False)
         
+        end = time.time()
+        sort_time += end-start
+        start = end
         # ========== Dump outputs to cosette ==========
         rewrite_cnt += 1
         total_candidate_cnt.append(len(rewritten_queries_lower_cost_after_test))
         ProveVerifier().verify(appname, q, constraints, rewritten_queries_lower_cost_after_test, rewrite_cnt)
-   
+
+        end = time.time()
+        dump_time += end-start
     
     exp_recorder.record("candidate info",  total_candidate_cnt)
     print("Rewrite Number %d" % rewrite_cnt)
     print("Average # of candidates %f" % (sum(total_candidate_cnt) / len(total_candidate_cnt)))
+    print("Total time enumerating query rewrites: %d" % enumerate_time)
+    print("Total time estimating cost of rewrites: %d" % get_cost_time)
+    print("Total time running tests for verification: %d" % run_test_time)
+    print("Total time sorting verified queries: %d" % sort_time)
+    print("Total time dumping outputs: %d" % dump_time)
