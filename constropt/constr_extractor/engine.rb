@@ -64,18 +64,23 @@ class Engine
         full_class_nodes[node.parent].children.append(node)
       end
     end
+
+    dummy_root = ClassNode.new("DummyRoot")
     active_record_node = nil
+    saved_nodes = []
     roots.each do |root|
       # up to rails 4.2, use activatereocrd::base
-      active_record_node = root if root.name == 'ActiveRecord::Base'
+      active_record_node = root if root.name == 'ActiveRecord::Base' && active_record_node.nil?
       # if ApplicationRecord < ActiveRecord::Base, use ApplicationRecord, requires rails > 4.2
       application_record_node = root.children.select { |c| c.name == 'ApplicationRecord' }
       if !application_record_node.empty?
         active_record_node = application_record_node[0]
-        break
       end
+      saved_nodes.append(root) if ["RailsSettings::Base"].include? root.name
     end
-    active_record_node
+    dummy_root.children.append(active_record_node)
+    dummy_root.children += saved_nodes
+    dummy_root
   end
 
   def get_classname_and_parents(ast)
@@ -94,10 +99,10 @@ class Engine
         module_name = class_ast[0].source
         class_ast[1].each do |c|
           next unless c.type.to_s == 'class'
-          class_name = c[0].source
+          class_name = "#{module_name}::#{c[0].source}"
           parent_name = nil
           parent_name = c[1].source unless c[1].nil?
-          if classname_parents.include? class_name
+          if classname_parents.key? class_name
             puts "[Error] Class name #{class_name} already exist!!"
           end
           classname_parents[class_name] = [parent_name, c]

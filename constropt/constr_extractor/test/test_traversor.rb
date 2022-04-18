@@ -2,8 +2,8 @@ require_relative '../traversor'
 require_relative '../class_node'
 
 class TestPrint
-  def visit(node)
-    puts "#{node.name} => #{node.parent}"
+  def visit(node, params)
+    puts "#{node.name} => #{node.children.map{|c| c.to_s}}"
   end
 end
 
@@ -17,7 +17,7 @@ def test_naive
 
   #   TestPrint.print_lambda(n0)
   t = Traversor.new(TestPrint.new)
-  t.traverse([n0])
+  t.traverse(n0)
 end
 
 test_naive

@@ -31,7 +31,7 @@ class StateMachineExtractor < Extractor
       possible_values = possible_values.compact
       possible_values = possible_values.uniq
     end
-    constraint = InclusionConstraint.new(column, possible_values, 'state_machine')
+    constraint = InclusionConstraint.new(column, possible_values, 'state_machine', db=false)
     constraint
   end
 

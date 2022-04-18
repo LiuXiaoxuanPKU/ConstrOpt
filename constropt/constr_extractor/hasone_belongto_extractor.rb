@@ -24,7 +24,7 @@ class HasoneBelongtoExtractor < Extractor
       end # if as field is nil, it's a polymorphic assoc, the unique constriant does not hold anymore
 
       @class_constraint_map[constraint.class_name.classify] = \
-        UniqueConstraint.new(constraint.foreign_key, nil, true, nil, false, false)
+        UniqueConstraint.new([constraint.foreign_key], nil, true, "has_one", db = false)
     end
 
     # extract polymorphic associations
@@ -65,7 +65,7 @@ class HasoneBelongtoExtractor < Extractor
         next
       end
       value_list = @polyfield_valuelist_map[field]
-      inclusion_c = InclusionConstraint.new(field + "_type", value_list, 'polymorphic', db = false, allow_nil = false)
+      inclusion_c = InclusionConstraint.new(field + "_type", value_list, 'polymorphic', db = false)
       node.constraints.append(inclusion_c)
     end
   end

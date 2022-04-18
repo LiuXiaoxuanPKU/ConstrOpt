@@ -14,7 +14,10 @@ def test_load_queries():
 def test_load_constraints():
     filename = get_filename(FileType.CONSTRAINT, "redmine") 
     constraints = Loader.load_constraints(filename)
+    db_constraints = [c for c in constraints if c.db]
+    model_constraints = [c for c in constraints if not c.db]
     print(constraints[0])
+    print("DB constraints: %d, Model constraints: %d" % (len(db_constraints), len(model_constraints)))
 
 if __name__ == "__main__":
     # test_load_queries()

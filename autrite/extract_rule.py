@@ -20,6 +20,9 @@ class ExtractQueryRule(rule.Rule):
         # no JOIN case -> assume no table.field in anywhere (except table.*)
         if not self.contain_join(q):
             table = from_clause
+            if isinstance(table, dict):
+                print("[Warning] Does not handle dict table (alias) %s for now" % table)
+                return []
             if not table in self.cs_tables:
                 return []
             if self.check_select(select_clause, table):
@@ -63,7 +66,14 @@ class ExtractQueryRule(rule.Rule):
         for c in cs:
             if not c.table in table_to_field.keys():
                 table_to_field[c.table] = set()
-            table_to_field[c.table].add(c.field)
+            if isinstance(c.field, str):
+                table_to_field[c.table].add(c.field)
+            elif isinstance(c.field, list):
+                table_to_field[c.table].union(set(c.field))
+            elif c.field is None:
+                print(c)
+            else:
+                print("[Error] extract rule does not handle field %s of type %s" % (c.field, type(c.field)))
         return table_to_field
 
     # return True if the query contain JOIN
@@ -83,7 +93,11 @@ class ExtractQueryRule(rule.Rule):
             if isinstance(value, int):
                 return False
             if "*" in value:
+                return False
                 return True
+            elif not isinstance(value, str):
+                print("[Warning] Does not handle value %s of type %s" % (value, type(value)))
+                return False
             elif table is not None and value in self.table_to_field[table]:
                 return True
             elif "." in value:
@@ -113,6 +127,15 @@ class ExtractQueryRule(rule.Rule):
                     return True
             return False
         else: # base case
+            if op == "not":
+                clause = clause['not']
+                op = list(clause.keys())[0]
+            if not isinstance(clause[op], list):
+                print("[Warning] 1. Does not handle predicate %s of type %s for now" % (clause[op], type(clause[op])))
+                return False
+            if not isinstance(clause[op][0], str):
+                print("[Warning] 2. Does not handle predicate %s of type %s for now" % (clause[op][0], type(clause[op][0])))
+                return False
             return clause[op][0] in self.table_to_field[table]
 
     # check on_clause inside from_clause
@@ -133,7 +156,16 @@ class ExtractQueryRule(rule.Rule):
                     return True
         # base case: does not contain and/or
         else:
-            t, f = clause[op][0].split(".")
+            if not isinstance(clause[op], list):
+                print("[Warning] Does not handle clause %s, expect list" % clause[op])
+                return False
+            if not isinstance(clause[op][0], str):
+                return False
+            l = clause[op][0].split(".")
+            if len(l) == 1:
+                print("[Warning] Does not handle field %s without table name" % clause[op][0])
+                return False
+            t, f = l
             if isinstance(f, str):
                 return t in self.cs_tables and f in self.table_to_field[t]
             else: 

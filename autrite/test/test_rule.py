@@ -111,7 +111,7 @@ def test_add_predicate_simple():
     print("===============Add Predicate=================")
     q_before_str = "select * from R where a >= b"
     q_before = parse(q_before_str)
-    c = NumericalConstraint("R", "a", 0, 100)
+    c = NumericalConstraint("R", "a", False, 0, 100)
     print("Before: ", format(q_before))
     print("Constraint: ", str(c))
     print("After: ")
@@ -123,7 +123,7 @@ def test_add_predicate_simple():
     print("--------------")
     q_before_str = "select * from R where a > b and a > c"
     q_before = parse(q_before_str)
-    c = NumericalConstraint("R", "a", 0, 100)
+    c = NumericalConstraint("R", "a", False, 0, 100)
     print("Before: ", format(q_before))
     print("Constraint: ", str(c))
     print("After: ")
@@ -137,7 +137,7 @@ def test_add_predicate_simple():
     # select * from R where (a > b and b < 100) or a < c
     # select * from R where a > b or (a < c and c > 0)
     q_before = parse(q_before_str)
-    c = NumericalConstraint("R", "a", 0, 100)
+    c = NumericalConstraint("R", "a", False, 0, 100)
     print("Before: ", format(q_before))
     print("After: ")
     q_afters = AddPredicate(c).apply(q_before)
@@ -148,7 +148,7 @@ def test_add_predicate_simple():
     print("--------------")
     q_before_str = "select * from R where a = b"
     q_before = parse(q_before_str)
-    c = NumericalConstraint("R", "a", 0, 100)
+    c = NumericalConstraint("R", "a", False, 0, 100)
     print("Before: ", format(q_before))
     print("After: ")
     q_afters = AddPredicate(c).apply(q_before)
@@ -160,7 +160,7 @@ def test_add_predicate_validate():
     print("===============Add Predicate Validate, remove redundant predicates=================")
     q_before_str = "select * from R where b = 147 and a < b"
     q_before = parse(q_before_str)
-    c = NumericalConstraint("R", "a", 0, 100)
+    c = NumericalConstraint("R", "a", False, 0, 100)
     print("Before: ", format(q_before))
     print("Constraint: ", str(c))
     print("After: ")
@@ -172,7 +172,7 @@ def test_add_predicate_transitivity():
     print("===============Add Predicate Transitivity, only enumerate tokens that might have constraints =================")
     q_before_str = "select * from R where a = b and b = c and d < 100"
     q_before = parse(q_before_str)
-    c = NumericalConstraint("R", "a", 0, 100)
+    c = NumericalConstraint("R", "a", False, 0, 100)
     print("Before: ", format(q_before))
     print("Constraint: ", str(c))
     print("After: ")
@@ -184,7 +184,7 @@ def test_add_predicate_join():
     print("===============Add Predicate Join =================")
     q_before_str = "select * from R1 INNER JOIN R2 on R1.a = R2.b where R1.a > 1"
     q_before = parse(q_before_str)
-    c = NumericalConstraint("R1", "a", 0, 100)
+    c = NumericalConstraint("R1", "a", False, 0, 100)
     print("Before: ", format(q_before))
     print("Constraint: ", str(c))
     print("After: ")
@@ -196,7 +196,7 @@ def test_remove_predicate_simple():
     print("===============Remove Predicate=================")
     q_before_str = "select * from R where a > b"
     q_before = parse(q_before_str)
-    c = NumericalConstraint("R", "a", 0, 100)
+    c = NumericalConstraint("R", "a", False, 0, 100)
     print("Before: ", format(q_before))
     print("Constraint: ", str(c))
     print("After: ")
@@ -207,7 +207,7 @@ def test_remove_predicate_simple():
     print("--------------")
     q_before_str = "select * from R where a > b or a > c"
     q_before = parse(q_before_str)
-    c = NumericalConstraint("R", "a", 0, 100)
+    c = NumericalConstraint("R", "a", False, 0, 100)
     print("Before: ", format(q_before))
     print("Constraint: ", str(c))
     print("After: ")
@@ -218,7 +218,7 @@ def test_remove_predicate_simple():
     print("--------------")
     q_before_str = "select * from R where a > b or a < c and a > d"
     q_before = parse(q_before_str)
-    c = NumericalConstraint("R", "a", 0, 100)
+    c = NumericalConstraint("R", "a", False, 0, 100)
     print("Before: ", format(q_before))
     print("Constraint: ", str(c))
     print("After: ")
@@ -229,7 +229,7 @@ def test_remove_predicate_simple():
     print("--------------")
     q_before_str = "select * from R where a > b and a < c and a > d"
     q_before = parse(q_before_str)
-    c = NumericalConstraint("R", "a", 0, 100)
+    c = NumericalConstraint("R", "a", False, 0, 100)
     print("Before: ", format(q_before))
     print("Constraint: ", str(c))
     print("After: ")
@@ -240,7 +240,7 @@ def test_remove_predicate_simple():
     print("--------------")
     q_before_str = "select * from R where a > b or b > c and c > d or d > e and e > f"
     q_before = parse(q_before_str)
-    c = NumericalConstraint("R", "b", 0, 100)
+    c = NumericalConstraint("R", "b", False, 0, 100)
     print("Before: ", format(q_before))
     print("Constraint: ", str(c))
     print("After: ")
@@ -252,7 +252,7 @@ def test_remove_predicate_simple():
     print("--------------")
     q_before_str = "select * from R where a > b or b > c and c > d or d > e and e > f or f > g"
     q_before = parse(q_before_str)
-    c = NumericalConstraint("R", "f", 0, 100)
+    c = NumericalConstraint("R", "f", False, 0, 100)
     print("Before: ", format(q_before))
     print("Constraint: ", str(c))
     print("After: ")
@@ -264,7 +264,7 @@ def test_remove_predicate_simple():
     print("--------------")
     q_before_str = "select * from R where a > b and b > c or c > d and d > e or e > f"
     q_before = parse(q_before_str)
-    c = NumericalConstraint("R", "d", 0, 100)
+    c = NumericalConstraint("R", "d", False, 0, 100)
     print("Before: ", format(q_before))
     print("Constraint: ", str(c))
     print("After: ")
@@ -276,7 +276,7 @@ def test_remove_predicate_simple():
     print("--------------")
     q_before_str = "select * from R where a > c and (b > c or c > d) and c > e or e > f"
     q_before = parse(q_before_str)
-    c = NumericalConstraint("R", "c", 0, 100)
+    c = NumericalConstraint("R", "c", False, 0, 100)
     print("Before: ", format(q_before))
     print("Constraint: ", str(c))
     print("After: ")
@@ -288,7 +288,7 @@ def test_remove_predicate_simple():
     print("--------------")
     q_before_str = "SELECT 1 AS one FROM members WHERE members.user_id IS NULL AND members.project_id = $1 LIMIT $2"
     q_before = parse(q_before_str)
-    c = NumericalConstraint("members", "user_id", 0, 100)
+    c = NumericalConstraint("members", "user_id", False, 0, 100)
     print("Before: ", format(q_before))
     print("Constraint: ", str(c))
     print("After: ")
@@ -300,7 +300,7 @@ def test_remove_predicate_simple():
     print("--------------")
     q_before_str = "SELECT 1 AS one FROM members WHERE members.user_id IS NULL AND members.project_id = $1 LIMIT $2"
     q_before = parse(q_before_str)
-    c = NumericalConstraint("members", "project_id", 0, 100)
+    c = NumericalConstraint("members", "project_id", False, 0, 100)
     print("Before: ", format(q_before))
     print("Constraint: ", str(c))
     print("After: ")
@@ -312,7 +312,7 @@ def test_remove_predicate_simple():
     print("--------------")
     q_before_str = "SELECT members.* FROM members INNER JOIN projects ON projects.id = members.project_id WHERE members.user_id = $1 AND projects.status != $2 AND members.project_id IS NULL ORDER BY members.id ASC LIMIT $3"
     q_before = parse(q_before_str)
-    c = NumericalConstraint("members", "project_id", 0, 100)
+    c = NumericalConstraint("members", "project_id", False, 0, 100)
     print("Before: ", format(q_before))
     print("Constraint: ", str(c))
     print("After: ")
@@ -324,7 +324,7 @@ def test_remove_predicate_simple():
     print("--------------")
     q_before_str = "SELECT members.* FROM members INNER JOIN projects ON projects.id = members.project_id WHERE members.project_id = $1 AND members.project_id != $2 AND members.project_id IS NULL ORDER BY members.id ASC LIMIT $3"
     q_before = parse(q_before_str)
-    c = NumericalConstraint("members", "project_id", 0, 100)
+    c = NumericalConstraint("members", "project_id", False, 0, 100)
     print("Before: ", format(q_before))
     print("Constraint: ", str(c))
     print("After: ")
@@ -394,14 +394,14 @@ def test_removenull_predicate():
     print(len(q_afters))
     
 if __name__ == "__main__":
-    # test_add_limit_one_select_from()
-    # test_remove_distinct_select_from()
-    # test_add_limit_one_where_having()
+    test_add_limit_one_select_from()
+    test_remove_distinct_select_from()
+    test_add_limit_one_where_having()
     test_add_predicate_simple()
     test_add_predicate_validate()
     test_add_predicate_join()
     test_add_predicate_transitivity()
-    # test_remove_predicate_simple()
+    test_remove_predicate_simple()
     # test_union_all_simple()
     # test_remove_join()
     # test_removenull_predicate()

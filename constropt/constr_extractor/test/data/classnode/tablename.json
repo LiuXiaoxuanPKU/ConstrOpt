@@ -4,7 +4,14 @@
     "parent": null,
     "table": "as",
     "children": ["B", "C"],
-    "constraints": "[{\"^o\":\"InclusionConstraint\",\"field_name\":\"type\",\"values\":[\"A\",\"B\",\"C\",\"D\"],\"type\":\"class_inheritance\"}]",
+    "constraints": [
+      {
+        "^o": "InclusionConstraint",
+        "field_name": "type",
+        "values": ["A", "B", "C", "D"],
+        "type": "class_inheritance"
+      }
+    ],
     "ast": null,
     "constants": []
   },
@@ -13,7 +20,7 @@
     "parent": "A",
     "table": "as",
     "children": ["D"],
-    "constraints": "[]",
+    "constraints": [],
     "ast": null,
     "constants": []
   },
@@ -22,7 +29,7 @@
     "parent": "A",
     "table": "as",
     "children": [],
-    "constraints": "[]",
+    "constraints": [],
     "ast": null,
     "constants": []
   },
@@ -31,7 +38,7 @@
     "parent": "B",
     "table": "as",
     "children": [],
-    "constraints": "[]",
+    "constraints": [],
     "ast": null,
     "constants": []
   }

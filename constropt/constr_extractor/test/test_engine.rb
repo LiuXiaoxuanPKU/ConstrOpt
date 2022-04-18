@@ -55,6 +55,6 @@ end
 
 
 # test_buildin
-# test_app_builtin('./data/redmine_models')
-# test_app_builtin('./data/openproject_models')
-test_app_state_machine('./data/gitlab_models')
+test_app_builtin('test/data/redmine_models')
+test_app_builtin('test/data/openproject_models')
+# test_app_state_machine('./data/gitlab_models')

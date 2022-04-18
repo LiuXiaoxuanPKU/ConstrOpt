@@ -21,7 +21,8 @@ class ClassInheritanceExtractor < Extractor
       next if value.length <= 1
 
       node = @table_node_map[table]
-      c = InclusionConstraint.new('type', @table_value_map[node.table], 'class_inheritance')
+      db = false
+      c = InclusionConstraint.new('type', @table_value_map[node.table], 'class_inheritance', db)
       node.constraints.append(c)
     end
   end

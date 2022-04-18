@@ -16,25 +16,25 @@ class Loader:
                 c = None
                 if obj["^o"] == "LengthConstraint":
                     c = constraint.LengthConstraint(
-                        classnode['table'], obj['field_name'], obj['min'], obj['max'])
+                        classnode['table'], obj['field_name'], obj['db'], obj['min'], obj['max'])
                 elif obj["^o"] == "UniqueConstraint":
                     c = constraint.UniqueConstraint(
-                        classnode['table'], obj['field_name'], obj['scope'])
+                        classnode['table'], obj['field_name'], obj['db'], obj["type"], cond=None)
                 elif obj["^o"] == "PresenceConstraint":
                     c = constraint.PresenceConstraint(
-                        classnode['table'], obj['field_name'])
+                        classnode['table'], obj['field_name'], obj['db'])
                 elif obj["^o"] == "InclusionConstraint":
                     c = constraint.InclusionConstraint(
-                        classnode['table'], obj['field_name'], obj['values'])
+                        classnode['table'], obj['field_name'], obj['db'], obj['values'])
                 elif obj["^o"] == "FormatConstraint":
                     c = constraint.FormatConstraint(
-                        classnode['table'], obj['field_name'], obj['format'])
+                        classnode['table'], obj['field_name'], obj['db'], obj['format'])
                 elif obj["^o"] == "NumericalConstraint":
                     c = constraint.NumericalConstraint(
-                        classnode['table'], obj['field_name'], obj['min'], obj['max'], obj['allow_nil'])
+                        classnode['table'], obj['field_name'], obj['db'], obj['min'], obj['max'])
                 elif obj["^o"] == "ForeignKeyConstraint":
                     c = constraint.ForeignKeyConstraint(
-                        classnode['table'], obj['fk_column_name'], obj['class_name'], obj['allow_nil']
+                        classnode['table'], obj['fk_column_name'], obj['db'], obj['class_name']
                     )
                 else:
                     print("[Error] Unsupport constraint type ", obj)
@@ -63,7 +63,7 @@ class Loader:
         print("Total # of raw queries: ", total_raw_queries)
         print("Total # of unique raw queries: ", unique_raw_queries)
 
-        lines.sort()
+        lines.sort(key=len)
         lines = lines[offset:offset+cnt]
         return lines
 
@@ -75,8 +75,7 @@ class Loader:
         for line in lines:
             try:
                 q_obj = parse(line)
-                format(q_obj)
-                q = RewriteQuery(line, q_obj)
+                q = RewriteQuery(format(q_obj), q_obj)
                 rewrite_qs.append(q)
             except:
                 fail_raw_queries.append(line)

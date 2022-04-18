@@ -1,6 +1,7 @@
 import traceback
 import random
 random.seed(0)
+import argparse
 
 import rule
 from loader import Loader
@@ -16,15 +17,29 @@ from utils import generate_query_param_rewrites, exp_recorder
 from config import CONNECT_MAP, FileType, get_filename
 
 if __name__ == '__main__':
-    appname = "redmine"
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--app', default='redmine')
+    parser.add_argument('--prove', action='store_true')
+    parser.add_argument('--db', action='store_true', \
+            help='only use db constraints to perform optimization')
+    args = parser.parse_args()
+    
+    appname =  args.app
+    if args.prove:
+        query_filename = get_filename(FileType.TEST_PROVE_Q, appname)
+    else:
+        query_filename = get_filename(FileType.RAW_QUERY, appname) 
     constraint_filename = get_filename(FileType.CONSTRAINT, appname)
-    query_filename = get_filename(FileType.RAW_QUERY, appname)
     offset = 0
     query_cnt = 10000
     rules = [rule.RemovePredicate, rule.RemoveDistinct, rule.RewriteNullPredicate,
              rule.AddLimitOne, rule.RemoveJoin, rule.ReplaceOuterJoin]
-    # rules = [rule.RewriteNullPredicate]
     constraints = Loader.load_constraints(constraint_filename)
+    if args.db:
+        print("========Only use DB constraints to perform optimization======")
+        print("[Before filtering DB constraints] ", len(constraints))
+        constraints = [c for c in constraints if c.db == True]
+        print("[After filtering DB constraints] ", len(constraints))
     queries = Loader.load_queries(query_filename, offset, query_cnt)
     rewriter = Rewriter()
     rewriter.set_rules(rules)
@@ -32,8 +47,6 @@ if __name__ == '__main__':
     rewrite_time = []
     rewrite_cnt = 0
     total_candidate_cnt = []
-    total_verified_cnt = 0
-    only_rewrite = False
     dump_counter = False # only dump counter example
 
     enumerate_time = 0
@@ -41,7 +54,6 @@ if __name__ == '__main__':
     run_test_time = 0
     sort_time = 0
     dump_time = 0
-
     for q in tqdm(queries):
         start = time.time()
         # =================Enumerate Candidates================
@@ -78,9 +90,13 @@ if __name__ == '__main__':
         for rq in rewritten_queries:
             try:
                 estimate_cost = Evaluator.evaluate_cost(rq.q_raw_param, connect_str) 
-                if estimate_cost < org_cost:
+                if estimate_cost < 2 * org_cost:
                     rq.estimate_cost = estimate_cost 
                     rewritten_queries_lower_cost.append(rq)
+                else:
+                    print("[Error] rewrite get slower")
+                    print("[Org] %f %s" % (org_cost, q.q_raw_param))
+                    print("[Rewrite] %f %s" % (estimate_cost, rq.q_raw_param))
             except:
                 # rewrite might have wrong syntax
                 continue

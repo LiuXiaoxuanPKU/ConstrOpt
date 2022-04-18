@@ -1,8 +1,38 @@
 import os
 import json, random, hashlib
 from collections import OrderedDict
+from constraint import UniqueConstraint
 from evaluator import Evaluator
 
+def test_unorder_list_eq(l1, l2):
+    if len(l1) != len(l2):
+        return False
+    sort_l1 = sorted(l1)
+    sort_l2 = sorted(l2)
+    return sort_l1 == sort_l2
+    
+def test_constraint_overlap(c1, c2):
+    if type(c1) != type(c2):
+        return False
+    eq = True
+    eq = eq and (c1.table == c2.table)
+    
+    if isinstance(c1, UniqueConstraint):
+        eq = eq and (c1.cond == c2.cond)
+        if isinstance(c1.field, str):
+            c1_field = [c1.field]
+        else:
+            c1_field = c1.field
+        if isinstance(c2.field, str):
+            c2_field = [c2.field]
+        else:
+            c2_field = c2.field
+        eq = eq and test_unorder_list_eq(c1.scope + c1_field, c2.scope +c2_field)
+    else:
+        print("[Error] Unimplemented constraint overlap for %s" % type(c1))
+    return eq
+        
+        
 def load_json_queries(filename):
     rewrite_file =  filename
     if not os.path.isfile(rewrite_file):

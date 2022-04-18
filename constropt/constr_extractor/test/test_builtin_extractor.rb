@@ -35,7 +35,7 @@ def test_validates
   node.ast = YARD::Parser::Ruby::RubyParser.parse(class_def).root[0]
   builtin_extractor = BuiltinExtractor.new
   builtin_extractor.visit(node, {})
-  raise "Get #{node.constraints.length} extracted constraints, expect 9" unless node.constraints.length == 9 
+  raise "Get #{node.constraints.length} extracted constraints, expect 13" unless node.constraints.length == 13
   puts "extracted constraints: #{node.constraints}"
 end
 
@@ -72,7 +72,7 @@ def test_numerical
   node.ast = YARD::Parser::Ruby::RubyParser.parse(class_def).root[0]
   builtin_extractor = BuiltinExtractor.new
   builtin_extractor.visit(node, {})
-  raise "Get #{node.constraints.length} extracted constraints, expect 6" unless node.constraints.length == 6 
+  raise "Get #{node.constraints.length} extracted constraints, expect 7" unless node.constraints.length == 7 
 
   puts "extracted constraints: #{node.constraints}" 
 end

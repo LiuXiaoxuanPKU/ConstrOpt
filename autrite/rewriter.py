@@ -42,7 +42,7 @@ class Rewriter:
         def get_field_constraint(field, constraints):
             field_constraints = []
             for c in constraints:
-                if c.field == field:
+                if c.field == field or (isinstance(c.field, list) and field in c.field):
                     field_constraints.append(c)
             return field_constraints
 

@@ -1,18 +1,43 @@
 [
   {
     "table": null,
+    "class": "DummyRoot",
+    "constraints": [
+      {
+        "^o": "InclusionConstraint",
+        "field_name": "type",
+        "db": false,
+        "values": [
+          "DummyRoot",
+          "ApplicationRecord"
+        ],
+        "type": "class_inheritance"
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "id"
+        ],
+        "db": false,
+        "cond": "",
+        "case_sensitive": false,
+        "type": "pk"
+      }
+    ]
+  },
+  {
+    "table": null,
     "class": "ApplicationRecord",
     "constraints": [
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -22,14 +47,13 @@
     "constraints": [
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -41,19 +65,17 @@
         "^o": "PresenceConstraint",
         "field_name": "show_until",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -65,7 +87,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "container",
         "db": false,
-        "allow_nil": true,
         "class_name": "Container",
         "fk_column_name": "container_id",
         "polymorphic": true
@@ -74,7 +95,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "author",
         "db": false,
-        "allow_nil": true,
         "class_name": "User",
         "fk_column_name": "author_id",
         "polymorphic": null
@@ -83,36 +103,37 @@
         "^o": "PresenceConstraint",
         "field_name": "author",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "content_type",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "filesize",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "description",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 255
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "description",
+        "db": false,
+        "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "container_type",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -120,28 +141,24 @@
         "^o": "PresenceConstraint",
         "field_name": "filename",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "disk_filename",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "filesize",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "digest",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -149,26 +166,23 @@
         "^o": "PresenceConstraint",
         "field_name": "downloads",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "author_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -180,25 +194,29 @@
         "^o": "PresenceConstraint",
         "field_name": "help_text",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "attribute_name",
+        "field_name": [
+          "attribute_name",
+          "type"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": null,
-        "scope": [
-          "type"
-        ]
+        "type": "builtin"
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "attribute_name",
+        "db": false,
+        "cond": ""
       },
       {
         "^o": "InclusionConstraint",
         "field_name": "type",
         "db": false,
-        "allow_nil": false,
         "values": [
           "AttributeHelpText",
           "AttributeHelpText::Project",
@@ -210,47 +228,41 @@
         "^o": "PresenceConstraint",
         "field_name": "help_text",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "type",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "attribute_name",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "created_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "updated_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -262,7 +274,6 @@
         "^o": "InclusionConstraint",
         "field_name": "attribute_name",
         "db": false,
-        "allow_nil": false,
         "values": [
           {
             "^o": "Proc"
@@ -271,15 +282,20 @@
         "type": "builtin"
       },
       {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
+        "^o": "PresenceConstraint",
+        "field_name": "attribute_name",
         "db": false,
-        "allow_nil": false,
+        "cond": ""
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "id"
+        ],
+        "db": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -291,7 +307,6 @@
         "^o": "InclusionConstraint",
         "field_name": "attribute_name",
         "db": false,
-        "allow_nil": false,
         "values": [
           {
             "^o": "Proc"
@@ -300,15 +315,20 @@
         "type": "builtin"
       },
       {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
+        "^o": "PresenceConstraint",
+        "field_name": "attribute_name",
         "db": false,
-        "allow_nil": false,
+        "cond": ""
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "id"
+        ],
+        "db": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -317,21 +337,25 @@
     "class": "AuthSource",
     "constraints": [
       {
-        "^o": "UniqueConstraint",
+        "^o": "PresenceConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
+        "cond": ""
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "name"
+        ],
+        "db": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "builtin"
       },
       {
         "^o": "LengthConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "min": -1,
         "max": -1
       },
@@ -339,7 +363,6 @@
         "^o": "InclusionConstraint",
         "field_name": "type",
         "db": false,
-        "allow_nil": false,
         "values": [
           "AuthSource",
           "DummyAuthSource",
@@ -351,7 +374,6 @@
         "^o": "LengthConstraint",
         "field_name": "type",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -359,7 +381,6 @@
         "^o": "LengthConstraint",
         "field_name": "name",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -367,7 +388,6 @@
         "^o": "LengthConstraint",
         "field_name": "host",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -375,7 +395,6 @@
         "^o": "LengthConstraint",
         "field_name": "attr_login",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -383,7 +402,6 @@
         "^o": "LengthConstraint",
         "field_name": "attr_firstname",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -391,7 +409,6 @@
         "^o": "LengthConstraint",
         "field_name": "attr_lastname",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -399,7 +416,6 @@
         "^o": "LengthConstraint",
         "field_name": "attr_mail",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -407,40 +423,35 @@
         "^o": "PresenceConstraint",
         "field_name": "onthefly_register",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "created_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "updated_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "tls_mode",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -450,14 +461,13 @@
     "constraints": [
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -466,10 +476,15 @@
     "class": "LdapAuthSource",
     "constraints": [
       {
+        "^o": "PresenceConstraint",
+        "field_name": "tls_mode",
+        "db": false,
+        "cond": ""
+      },
+      {
         "^o": "InclusionConstraint",
         "field_name": "tls_mode",
         "db": false,
-        "allow_nil": false,
         "values": [
 
         ],
@@ -479,28 +494,24 @@
         "^o": "PresenceConstraint",
         "field_name": "host",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "port",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "attr_login",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 60
       },
@@ -508,7 +519,6 @@
         "^o": "LengthConstraint",
         "field_name": "host",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 60
       },
@@ -516,7 +526,6 @@
         "^o": "LengthConstraint",
         "field_name": "account",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 255
       },
@@ -524,7 +533,6 @@
         "^o": "LengthConstraint",
         "field_name": "account_password",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 255
       },
@@ -532,7 +540,6 @@
         "^o": "LengthConstraint",
         "field_name": "base_dn",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 255
       },
@@ -540,7 +547,6 @@
         "^o": "LengthConstraint",
         "field_name": "attr_login",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 30
       },
@@ -548,7 +554,6 @@
         "^o": "LengthConstraint",
         "field_name": "attr_firstname",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 30
       },
@@ -556,7 +561,6 @@
         "^o": "LengthConstraint",
         "field_name": "attr_lastname",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 30
       },
@@ -564,7 +568,6 @@
         "^o": "LengthConstraint",
         "field_name": "attr_mail",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 30
       },
@@ -572,7 +575,6 @@
         "^o": "LengthConstraint",
         "field_name": "attr_admin",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 30
       },
@@ -580,20 +582,24 @@
         "^o": "NumericalConstraint",
         "field_name": "port",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": null
       },
       {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
+        "^o": "PresenceConstraint",
+        "field_name": "port",
         "db": false,
-        "allow_nil": false,
+        "cond": ""
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "id"
+        ],
+        "db": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -605,7 +611,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "context",
         "db": false,
-        "allow_nil": true,
         "class_name": "Project",
         "fk_column_name": "context_id",
         "polymorphic": null
@@ -614,21 +619,19 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "principal",
         "db": false,
-        "allow_nil": true,
         "class_name": "Principal",
         "fk_column_name": "principal_id",
         "polymorphic": null
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -640,7 +643,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "project",
         "db": false,
-        "allow_nil": true,
         "class_name": "Project",
         "fk_column_name": "project_id",
         "polymorphic": null
@@ -649,27 +651,31 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "assigned_to",
         "db": false,
-        "allow_nil": true,
         "class_name": "Principal",
         "fk_column_name": "assigned_to_id",
         "polymorphic": null
       },
       {
-        "^o": "UniqueConstraint",
+        "^o": "PresenceConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
+        "cond": ""
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "name",
+          "project_id"
+        ],
+        "db": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-          "project_id"
-        ]
+        "type": "builtin"
       },
       {
         "^o": "LengthConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "min": -1,
         "max": -1
       },
@@ -677,14 +683,12 @@
         "^o": "PresenceConstraint",
         "field_name": "project_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "name",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -692,26 +696,23 @@
         "^o": "PresenceConstraint",
         "field_name": "created_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "updated_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -723,7 +724,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "changeset",
         "db": false,
-        "allow_nil": true,
         "class_name": "Changeset",
         "fk_column_name": "changeset_id",
         "polymorphic": null
@@ -732,35 +732,30 @@
         "^o": "PresenceConstraint",
         "field_name": "changeset_id",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "action",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "path",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "changeset_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "action",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -768,19 +763,17 @@
         "^o": "PresenceConstraint",
         "field_name": "path",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -792,7 +785,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "repository",
         "db": false,
-        "allow_nil": true,
         "class_name": "Repository",
         "fk_column_name": "repository_id",
         "polymorphic": null
@@ -801,7 +793,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "user",
         "db": false,
-        "allow_nil": true,
         "class_name": "User",
         "fk_column_name": "user_id",
         "polymorphic": null
@@ -810,129 +801,157 @@
         "^o": "PresenceConstraint",
         "field_name": "repository_id",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "revision",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "committed_on",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "commit_date",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "revision",
+        "field_name": [
+          "revision",
+          "repository_id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": null,
-        "scope": [
-          "repository_id"
-        ]
+        "type": "builtin"
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "revision",
+        "db": false,
+        "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "scmid",
+        "field_name": [
+          "scmid",
+          "repository_id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": null,
-        "scope": [
-          "repository_id"
-        ]
+        "type": "builtin"
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "repository_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "revision",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "committed_on",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "repository_id",
+          "revision"
+        ],
+        "db": true,
+        "cond": "",
+        "case_sensitive": true,
+        "type": "db-index"
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
   {
-    "table": "'colors'",
+    "table": "colors",
     "class": "Color",
     "constraints": [
       {
         "^o": "PresenceConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "hexcode",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 255
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "name",
+        "db": false,
+        "cond": ""
       },
       {
         "^o": "FormatConstraint",
         "field_name": "hexcode",
         "db": false,
-        "allow_nil": false,
         "format": "/\\A#[0-9A-F]{6}\\z/"
       },
       {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
+        "^o": "PresenceConstraint",
+        "field_name": "hexcode",
         "db": false,
-        "allow_nil": false,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "name",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "hexcode",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "id"
+        ],
+        "db": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -944,7 +963,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "commented",
         "db": false,
-        "allow_nil": true,
         "class_name": "Commented",
         "fk_column_name": "commented_id",
         "polymorphic": true
@@ -953,7 +971,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "author",
         "db": false,
-        "allow_nil": true,
         "class_name": "User",
         "fk_column_name": "author_id",
         "polymorphic": null
@@ -962,28 +979,24 @@
         "^o": "PresenceConstraint",
         "field_name": "commented",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "author",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "comments",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "InclusionConstraint",
         "field_name": "commented_type",
         "db": false,
-        "allow_nil": false,
         "values": [
           "News"
         ],
@@ -993,7 +1006,6 @@
         "^o": "LengthConstraint",
         "field_name": "commented_type",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -1001,40 +1013,35 @@
         "^o": "PresenceConstraint",
         "field_name": "commented_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "author_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "created_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "updated_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -1043,23 +1050,27 @@
     "class": "CustomAction",
     "constraints": [
       {
+        "^o": "PresenceConstraint",
+        "field_name": "name",
+        "db": false,
+        "cond": ""
+      },
+      {
         "^o": "LengthConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "min": -1,
         "max": -1
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -1071,28 +1082,24 @@
         "^o": "PresenceConstraint",
         "field_name": "field_format",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "custom_options",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "min": -1,
         "max": -1
       },
@@ -1100,33 +1107,53 @@
         "^o": "InclusionConstraint",
         "field_name": "field_format",
         "db": false,
-        "allow_nil": false,
         "values": [
 
         ],
         "type": "builtin"
       },
       {
+        "^o": "PresenceConstraint",
+        "field_name": "field_format",
+        "db": false,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "min_length",
+        "db": false,
+        "cond": ""
+      },
+      {
         "^o": "NumericalConstraint",
         "field_name": "min_length",
         "db": false,
-        "allow_nil": false,
         "min": 0,
         "max": null
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "max_length",
+        "db": false,
+        "cond": ""
       },
       {
         "^o": "NumericalConstraint",
         "field_name": "max_length",
         "db": false,
-        "allow_nil": false,
         "min": 0,
         "max": null
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "min_length",
+        "db": false,
+        "cond": ""
       },
       {
         "^o": "NumericalConstraint",
         "field_name": "min_length",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": null
       },
@@ -1134,7 +1161,6 @@
         "^o": "InclusionConstraint",
         "field_name": "type",
         "db": false,
-        "allow_nil": false,
         "values": [
           "CustomField",
           "GroupCustomField",
@@ -1150,7 +1176,6 @@
         "^o": "LengthConstraint",
         "field_name": "type",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -1158,7 +1183,6 @@
         "^o": "LengthConstraint",
         "field_name": "field_format",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -1166,54 +1190,47 @@
         "^o": "PresenceConstraint",
         "field_name": "min_length",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "max_length",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "is_required",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "is_for_all",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "is_filter",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "visible",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -1223,14 +1240,13 @@
     "constraints": [
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -1240,14 +1256,13 @@
     "constraints": [
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -1257,14 +1272,13 @@
     "constraints": [
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -1274,14 +1288,13 @@
     "constraints": [
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -1291,14 +1304,13 @@
     "constraints": [
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -1308,14 +1320,13 @@
     "constraints": [
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -1327,7 +1338,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "custom_field",
         "db": false,
-        "allow_nil": true,
         "class_name": "Custom_field",
         "fk_column_name": "custom_field_id",
         "polymorphic": null
@@ -1336,27 +1346,24 @@
         "^o": "PresenceConstraint",
         "field_name": "value",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "value",
         "db": false,
-        "allow_nil": false,
         "min": -1,
         "max": -1
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -1368,26 +1375,23 @@
         "^o": "PresenceConstraint",
         "field_name": "created_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "updated_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -1399,7 +1403,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "custom_field",
         "db": false,
-        "allow_nil": true,
         "class_name": "Custom_field",
         "fk_column_name": "custom_field_id",
         "polymorphic": null
@@ -1408,7 +1411,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "customized",
         "db": false,
-        "allow_nil": true,
         "class_name": "Customized",
         "fk_column_name": "customized_id",
         "polymorphic": true
@@ -1417,7 +1419,6 @@
         "^o": "LengthConstraint",
         "field_name": "customized_type",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -1425,26 +1426,23 @@
         "^o": "PresenceConstraint",
         "field_name": "customized_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "custom_field_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -1454,60 +1452,75 @@
     "constraints": [
       {
         "^o": "UniqueConstraint",
-        "field_name": "variable",
+        "field_name": [
+          "variable"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": null,
-        "scope": [
-
-        ]
+        "type": "builtin"
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "variable",
+        "db": false,
+        "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "hexcode",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "variable",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "FormatConstraint",
         "field_name": "hexcode",
         "db": false,
-        "allow_nil": false,
         "format": "/\\A#[0-9A-F]{6}\\z/"
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "hexcode",
+        "db": false,
+        "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "created_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "updated_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "variable"
+        ],
+        "db": true,
+        "cond": "",
+        "case_sensitive": true,
+        "type": "db-index"
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -1519,7 +1532,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "project",
         "db": false,
-        "allow_nil": true,
         "class_name": "Project",
         "fk_column_name": "project_id",
         "polymorphic": null
@@ -1528,37 +1540,34 @@
         "^o": "PresenceConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "name",
+        "field_name": [
+          "name",
+          "project_id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": true,
-        "scope": [
-          "project_id"
-        ]
+        "type": "builtin"
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "name",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -1570,33 +1579,29 @@
         "^o": "PresenceConstraint",
         "field_name": "encoded_token",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "created_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "updated_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -1608,7 +1613,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "project",
         "db": false,
-        "allow_nil": true,
         "class_name": "Project",
         "fk_column_name": "project_id",
         "polymorphic": null
@@ -1617,34 +1621,43 @@
         "^o": "PresenceConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "name",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
+        "field_name": [
+          "name",
           "type",
           "project_id"
-        ]
+        ],
+        "db": false,
+        "cond": "",
+        "case_sensitive": false,
+        "type": "builtin"
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "name",
+        "db": false,
+        "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 30
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "name",
+        "db": false,
+        "cond": ""
       },
       {
         "^o": "InclusionConstraint",
         "field_name": "type",
         "db": false,
-        "allow_nil": false,
         "values": [
           "Enumeration",
           "IssuePriority",
@@ -1656,7 +1669,6 @@
         "^o": "LengthConstraint",
         "field_name": "name",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -1664,40 +1676,35 @@
         "^o": "PresenceConstraint",
         "field_name": "is_default",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "active",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "created_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "updated_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -1709,21 +1716,19 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "color",
         "db": false,
-        "allow_nil": true,
         "class_name": "Color",
         "fk_column_name": "color_id",
         "polymorphic": null
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -1733,14 +1738,13 @@
     "constraints": [
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -1752,9 +1756,9 @@
         "^o": "InclusionConstraint",
         "field_name": "type",
         "db": false,
-        "allow_nil": false,
         "values": [
           "Export",
+          "Backup",
           "WorkPackages::Export"
         ],
         "type": "class_inheritance"
@@ -1763,26 +1767,39 @@
         "^o": "PresenceConstraint",
         "field_name": "created_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "updated_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
+      }
+    ]
+  },
+  {
+    "table": "exports",
+    "class": "Backup",
+    "constraints": [
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "id"
+        ],
+        "db": false,
+        "cond": "",
+        "case_sensitive": false,
+        "type": "pk"
       }
     ]
   },
@@ -1792,14 +1809,13 @@
     "constraints": [
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -1811,7 +1827,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "project",
         "db": false,
-        "allow_nil": true,
         "class_name": "Project",
         "fk_column_name": "project_id",
         "polymorphic": null
@@ -1820,7 +1835,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "last_message",
         "db": false,
-        "allow_nil": true,
         "class_name": "Message",
         "fk_column_name": ":last_message_id",
         "polymorphic": null
@@ -1829,70 +1843,73 @@
         "^o": "PresenceConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "description",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 30
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "name",
+        "db": false,
+        "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "description",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 255
       },
       {
         "^o": "PresenceConstraint",
+        "field_name": "description",
+        "db": false,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
         "field_name": "project_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "name",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "topics_count",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "messages_count",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -1904,7 +1921,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "group",
         "db": false,
-        "allow_nil": true,
         "class_name": "Group",
         "fk_column_name": "group_id",
         "polymorphic": null
@@ -1913,7 +1929,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "user",
         "db": false,
-        "allow_nil": true,
         "class_name": "User",
         "fk_column_name": "user_id",
         "polymorphic": null
@@ -1922,26 +1937,45 @@
         "^o": "PresenceConstraint",
         "field_name": "group_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "user_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "group_id",
+          "user_id"
+        ],
+        "db": true,
+        "cond": "",
+        "case_sensitive": true,
+        "type": "db-index"
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "user_id",
+          "group_id"
+        ],
+        "db": true,
+        "cond": "",
+        "case_sensitive": true,
+        "type": "db-index"
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -1953,7 +1987,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "author",
         "db": false,
-        "allow_nil": true,
         "class_name": "User",
         "fk_column_name": "author_id",
         "polymorphic": null
@@ -1962,73 +1995,97 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "journal",
         "db": false,
-        "allow_nil": true,
         "class_name": "Journal",
         "fk_column_name": "journal_id",
         "polymorphic": null
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
   {
-    "table": "'attachable_journals'",
+    "table": "attachable_journals",
     "class": "Journal::AttachableJournal",
     "constraints": [
       {
         "^o": "ForeignKeyConstraint",
         "field_name": "attachment",
         "db": false,
-        "allow_nil": true,
         "class_name": "Attachment",
         "fk_column_name": "attachment_id",
         "polymorphic": null
       },
       {
+        "^o": "PresenceConstraint",
+        "field_name": "journal_id",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "attachment_id",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "filename",
+        "db": true,
+        "cond": ""
+      },
+      {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
   {
-    "table": "'customizable_journals'",
+    "table": "customizable_journals",
     "class": "Journal::CustomizableJournal",
     "constraints": [
       {
         "^o": "ForeignKeyConstraint",
         "field_name": "custom_field",
         "db": false,
-        "allow_nil": true,
         "class_name": "Custom_field",
         "fk_column_name": "custom_field_id",
         "polymorphic": null
       },
       {
+        "^o": "PresenceConstraint",
+        "field_name": "journal_id",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "custom_field_id",
+        "db": true,
+        "cond": ""
+      },
+      {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -2040,136 +2097,225 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "author",
         "db": false,
-        "allow_nil": true,
         "class_name": "User",
         "fk_column_name": "author_id",
         "polymorphic": null
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
   {
-    "table": "'attachment_journals'",
+    "table": "attachment_journals",
     "class": "Journal::AttachmentJournal",
     "constraints": [
       {
+        "^o": "LengthConstraint",
+        "field_name": "container_type",
+        "db": true,
+        "min": 0,
+        "max": 0
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "filename",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "disk_filename",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "filesize",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "LengthConstraint",
+        "field_name": "digest",
+        "db": true,
+        "min": 0,
+        "max": 0
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "downloads",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "author_id",
+        "db": true,
+        "cond": ""
+      },
+      {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
   {
-    "table": "'changeset_journals'",
+    "table": "changeset_journals",
     "class": "Journal::ChangesetJournal",
     "constraints": [
       {
+        "^o": "PresenceConstraint",
+        "field_name": "repository_id",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "revision",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "committed_on",
+        "db": true,
+        "cond": ""
+      },
+      {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
   {
-    "table": "'message_journals'",
+    "table": "message_journals",
     "class": "Journal::MessageJournal",
     "constraints": [
       {
         "^o": "ForeignKeyConstraint",
         "field_name": "forum",
         "db": false,
-        "allow_nil": true,
         "class_name": "Forum",
         "fk_column_name": "forum_id",
         "polymorphic": null
       },
       {
+        "^o": "PresenceConstraint",
+        "field_name": "forum_id",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "subject",
+        "db": true,
+        "cond": ""
+      },
+      {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
   {
-    "table": "'news_journals'",
+    "table": "news_journals",
     "class": "Journal::NewsJournal",
     "constraints": [
       {
         "^o": "ForeignKeyConstraint",
         "field_name": "project",
         "db": false,
-        "allow_nil": true,
         "class_name": "Project",
         "fk_column_name": "project_id",
         "polymorphic": null
       },
       {
+        "^o": "LengthConstraint",
+        "field_name": "title",
+        "db": true,
+        "min": 0,
+        "max": 0
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "author_id",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "comments_count",
+        "db": true,
+        "cond": ""
+      },
+      {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
   {
-    "table": "'wiki_content_journals'",
+    "table": "wiki_content_journals",
     "class": "Journal::WikiContentJournal",
     "constraints": [
       {
+        "^o": "PresenceConstraint",
+        "field_name": "page_id",
+        "db": true,
+        "cond": ""
+      },
+      {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
   {
-    "table": "'work_package_journals'",
+    "table": "work_package_journals",
     "class": "Journal::WorkPackageJournal",
     "constraints": [
       {
         "^o": "ForeignKeyConstraint",
         "field_name": "project",
         "db": false,
-        "allow_nil": true,
         "class_name": "Project",
         "fk_column_name": "project_id",
         "polymorphic": null
@@ -2178,7 +2324,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "assigned_to",
         "db": false,
-        "allow_nil": true,
         "class_name": "Principal",
         "fk_column_name": "assigned_to_id",
         "polymorphic": null
@@ -2187,45 +2332,90 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "responsible",
         "db": false,
-        "allow_nil": true,
         "class_name": "Principal",
         "fk_column_name": "responsible_id",
         "polymorphic": null
       },
       {
+        "^o": "PresenceConstraint",
+        "field_name": "type_id",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "project_id",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "subject",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "status_id",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "priority_id",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "author_id",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "done_ratio",
+        "db": true,
+        "cond": ""
+      },
+      {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
   {
-    "table": "'journals'",
+    "table": "journals",
     "class": "Journal",
     "constraints": [
       {
         "^o": "UniqueConstraint",
-        "field_name": "version",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": null,
-        "scope": [
+        "field_name": [
+          "version",
           "journable_id",
           "journable_type"
-        ]
+        ],
+        "db": false,
+        "cond": "",
+        "case_sensitive": null,
+        "type": "builtin"
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "version",
+        "db": false,
+        "cond": ""
       },
       {
         "^o": "ForeignKeyConstraint",
         "field_name": "user",
         "db": false,
-        "allow_nil": true,
         "class_name": "User",
         "fk_column_name": "user_id",
         "polymorphic": null
@@ -2234,7 +2424,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "journable",
         "db": false,
-        "allow_nil": true,
         "class_name": "Journable",
         "fk_column_name": "journable_id",
         "polymorphic": true
@@ -2243,7 +2432,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "data",
         "db": false,
-        "allow_nil": true,
         "class_name": "Data",
         "fk_column_name": "data_id",
         "polymorphic": true
@@ -2252,22 +2440,61 @@
         "^o": "InclusionConstraint",
         "field_name": "data_type",
         "db": false,
-        "allow_nil": false,
         "values": [
           "Journal::BaseJournal"
         ],
         "type": "polymorphic"
       },
       {
+        "^o": "PresenceConstraint",
+        "field_name": "user_id",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "created_at",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "version",
+        "db": true,
+        "cond": ""
+      },
+      {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "data_id",
+          "data_type"
+        ],
+        "db": true,
+        "cond": "",
+        "case_sensitive": true,
+        "type": "db-index"
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "journable_type",
+          "journable_id",
+          "version"
+        ],
+        "db": true,
+        "cond": "",
+        "case_sensitive": true,
+        "type": "db-index"
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -2279,7 +2506,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "principal",
         "db": false,
-        "allow_nil": true,
         "class_name": "Principal",
         "fk_column_name": "user_id",
         "polymorphic": null
@@ -2288,7 +2514,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "project",
         "db": false,
-        "allow_nil": true,
         "class_name": "Project",
         "fk_column_name": "project_id",
         "polymorphic": null
@@ -2297,44 +2522,57 @@
         "^o": "PresenceConstraint",
         "field_name": "principal",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "user_id",
+        "field_name": [
+          "user_id",
+          "project_id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": null,
-        "scope": [
-          "project_id"
-        ]
+        "type": "builtin"
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "user_id",
+        "db": false,
+        "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "user_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "updated_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "user_id",
+          "project_id"
+        ],
+        "db": true,
+        "cond": "",
+        "case_sensitive": true,
+        "type": "db-index"
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -2346,7 +2584,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "member",
         "db": false,
-        "allow_nil": true,
         "class_name": "Member",
         "fk_column_name": "member_id",
         "polymorphic": null
@@ -2355,7 +2592,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "role",
         "db": false,
-        "allow_nil": true,
         "class_name": "Role",
         "fk_column_name": "role_id",
         "polymorphic": null
@@ -2364,33 +2600,41 @@
         "^o": "PresenceConstraint",
         "field_name": "role",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "member_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "role_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "member_id",
+          "role_id",
+          "inherited_from"
+        ],
+        "db": true,
+        "cond": "",
+        "case_sensitive": true,
+        "type": "db-index"
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -2402,7 +2646,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "parent",
         "db": false,
-        "allow_nil": true,
         "class_name": "MenuItem",
         "fk_column_name": "parent_id",
         "polymorphic": null
@@ -2411,45 +2654,42 @@
         "^o": "PresenceConstraint",
         "field_name": "title",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "title",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": true,
-        "scope": [
+        "field_name": [
+          "title",
           "navigatable_id",
           "type"
-        ]
+        ],
+        "db": false,
+        "cond": "",
+        "case_sensitive": true,
+        "type": "builtin"
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "name",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": true,
-        "scope": [
+        "field_name": [
+          "name",
           "navigatable_id",
           "parent_id"
-        ]
+        ],
+        "db": false,
+        "cond": "",
+        "case_sensitive": true,
+        "type": "builtin"
       },
       {
         "^o": "InclusionConstraint",
         "field_name": "type",
         "db": false,
-        "allow_nil": false,
         "values": [
           "MenuItem",
           "MenuItems::QueryMenuItem",
@@ -2459,14 +2699,13 @@
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -2478,30 +2717,29 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "query",
         "db": false,
-        "allow_nil": true,
         "class_name": "Query",
         "fk_column_name": "navigatable_id",
         "polymorphic": null
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "navigatable_id",
+        "field_name": [
+          "navigatable_id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": true,
-        "scope": null
+        "type": "has_one"
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -2513,21 +2751,19 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "wiki",
         "db": false,
-        "allow_nil": true,
         "class_name": "Wiki",
         "fk_column_name": "navigatable_id",
         "polymorphic": null
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -2539,7 +2775,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "forum",
         "db": false,
-        "allow_nil": true,
         "class_name": "Forum",
         "fk_column_name": "forum_id",
         "polymorphic": null
@@ -2548,7 +2783,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "author",
         "db": false,
-        "allow_nil": true,
         "class_name": "User",
         "fk_column_name": "author_id",
         "polymorphic": null
@@ -2557,7 +2791,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "last_reply",
         "db": false,
-        "allow_nil": true,
         "class_name": "Message",
         "fk_column_name": "last_reply_id",
         "polymorphic": null
@@ -2566,76 +2799,72 @@
         "^o": "PresenceConstraint",
         "field_name": "forum",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "subject",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "content",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "subject",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 255
       },
       {
         "^o": "PresenceConstraint",
+        "field_name": "subject",
+        "db": false,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
         "field_name": "forum_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "subject",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "replies_count",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "created_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "updated_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -2647,7 +2876,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "project",
         "db": false,
-        "allow_nil": true,
         "class_name": "Project",
         "fk_column_name": "project_id",
         "polymorphic": null
@@ -2656,7 +2884,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "author",
         "db": false,
-        "allow_nil": true,
         "class_name": "User",
         "fk_column_name": "author_id",
         "polymorphic": null
@@ -2665,30 +2892,38 @@
         "^o": "PresenceConstraint",
         "field_name": "title",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "title",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 60
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "title",
+        "db": false,
+        "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "summary",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 255
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "summary",
+        "db": false,
+        "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "title",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -2696,26 +2931,23 @@
         "^o": "PresenceConstraint",
         "field_name": "author_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "comments_count",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -2727,7 +2959,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "recipient",
         "db": false,
-        "allow_nil": true,
         "class_name": "User",
         "fk_column_name": "recipient_id",
         "polymorphic": null
@@ -2736,7 +2967,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "actor",
         "db": false,
-        "allow_nil": true,
         "class_name": "User",
         "fk_column_name": "actor_id",
         "polymorphic": null
@@ -2745,7 +2975,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "project",
         "db": false,
-        "allow_nil": true,
         "class_name": "Project",
         "fk_column_name": "project_id",
         "polymorphic": null
@@ -2754,7 +2983,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "journal",
         "db": false,
-        "allow_nil": true,
         "class_name": "Journal",
         "fk_column_name": "journal_id",
         "polymorphic": null
@@ -2763,7 +2991,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "resource",
         "db": false,
-        "allow_nil": true,
         "class_name": "Resource",
         "fk_column_name": "resource_id",
         "polymorphic": true
@@ -2772,7 +2999,6 @@
         "^o": "LengthConstraint",
         "field_name": "reason_ian",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -2780,42 +3006,36 @@
         "^o": "PresenceConstraint",
         "field_name": "recipient_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "resource_type",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "resource_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "created_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "updated_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "reason_mail",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -2823,20 +3043,34 @@
         "^o": "LengthConstraint",
         "field_name": "reason_mail_digest",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
       {
+        "^o": "ForeignKeyConstraint",
+        "field_name": "user",
+        "db": true,
+        "class_name": "User",
+        "fk_column_name": "actor_id",
+        "polymorphic": false
+      },
+      {
+        "^o": "ForeignKeyConstraint",
+        "field_name": "user",
+        "db": true,
+        "class_name": "User",
+        "fk_column_name": "recipient_id",
+        "polymorphic": false
+      },
+      {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -2848,7 +3082,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "project",
         "db": false,
-        "allow_nil": true,
         "class_name": "Project",
         "fk_column_name": "project_id",
         "polymorphic": null
@@ -2857,35 +3090,38 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "user",
         "db": false,
-        "allow_nil": true,
         "class_name": "User",
         "fk_column_name": "user_id",
         "polymorphic": null
       },
       {
-        "^o": "UniqueConstraint",
+        "^o": "PresenceConstraint",
         "field_name": "channel",
         "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": null,
-        "scope": [
+        "cond": ""
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "channel",
           "project",
           "user"
-        ]
+        ],
+        "db": false,
+        "cond": "",
+        "case_sensitive": null,
+        "type": "builtin"
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "user_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "channel",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -2893,26 +3129,62 @@
         "^o": "PresenceConstraint",
         "field_name": "created_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "updated_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "user_id",
+          "channel"
+        ],
+        "db": true,
+        "cond": "\"(project_id IS NULL)\"",
+        "case_sensitive": true,
+        "type": "db-index"
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "user_id",
+          "project_id",
+          "channel"
+        ],
+        "db": true,
+        "cond": "\"(project_id IS NOT NULL)\"",
+        "case_sensitive": true,
+        "type": "db-index"
+      },
+      {
+        "^o": "ForeignKeyConstraint",
+        "field_name": "project",
+        "db": true,
+        "class_name": "Project",
+        "fk_column_name": "project_id",
+        "polymorphic": false
+      },
+      {
+        "^o": "ForeignKeyConstraint",
+        "field_name": "user",
+        "db": true,
+        "class_name": "User",
+        "fk_column_name": "user_id",
+        "polymorphic": false
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -2924,7 +3196,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "query",
         "db": false,
-        "allow_nil": true,
         "class_name": "Query",
         "fk_column_name": "query_id",
         "polymorphic": null
@@ -2933,7 +3204,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "work_package",
         "db": false,
-        "allow_nil": true,
         "class_name": "Work_package",
         "fk_column_name": "work_package_id",
         "polymorphic": null
@@ -2942,19 +3212,33 @@
         "^o": "PresenceConstraint",
         "field_name": "position",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
+        "^o": "ForeignKeyConstraint",
+        "field_name": "query",
+        "db": true,
+        "class_name": "Query",
+        "fk_column_name": "query_id",
+        "polymorphic": false
+      },
+      {
+        "^o": "ForeignKeyConstraint",
+        "field_name": "work_package",
+        "db": true,
+        "class_name": "WorkPackage",
+        "fk_column_name": "work_package_id",
+        "polymorphic": false
+      },
+      {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -2966,7 +3250,6 @@
         "^o": "InclusionConstraint",
         "field_name": "type",
         "db": false,
-        "allow_nil": false,
         "values": [
           "Principal",
           "Group",
@@ -2983,7 +3266,6 @@
         "^o": "LengthConstraint",
         "field_name": "login",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -2991,42 +3273,36 @@
         "^o": "PresenceConstraint",
         "field_name": "firstname",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "lastname",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "mail",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "admin",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "status",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "language",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -3034,26 +3310,34 @@
         "^o": "PresenceConstraint",
         "field_name": "mail_notification",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "first_login",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "lastname",
+          "type"
+        ],
+        "db": true,
+        "cond": "\"(((type)::text = 'Group'::text) OR ((type)::text = 'PlaceholderUser'::text))\"",
+        "case_sensitive": true,
+        "type": "db-index"
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -3065,27 +3349,30 @@
         "^o": "PresenceConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 256
       },
       {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
+        "^o": "PresenceConstraint",
+        "field_name": "name",
         "db": false,
-        "allow_nil": false,
+        "cond": ""
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "id"
+        ],
+        "db": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -3097,20 +3384,24 @@
         "^o": "LengthConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 256
       },
       {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
+        "^o": "PresenceConstraint",
+        "field_name": "name",
         "db": false,
-        "allow_nil": false,
+        "cond": ""
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "id"
+        ],
+        "db": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -3122,7 +3413,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "auth_source",
         "db": false,
-        "allow_nil": true,
         "class_name": "Auth_source",
         "fk_column_name": "auth_source_id",
         "polymorphic": null
@@ -3131,101 +3421,125 @@
         "^o": "PresenceConstraint",
         "field_name": "login",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "firstname",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "lastname",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "mail",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "login",
+        "field_name": [
+          "login"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "builtin"
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "login",
+        "db": false,
+        "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "mail",
+        "field_name": [
+          "mail"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "builtin"
       },
       {
         "^o": "FormatConstraint",
         "field_name": "login",
         "db": false,
-        "allow_nil": false,
         "format": "/\\A[a-z0-9_\\-@.+ ]*\\z/i"
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "login",
+        "db": false,
+        "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "login",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 256
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "login",
+        "db": false,
+        "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "firstname",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 256
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "firstname",
+        "db": false,
+        "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "lastname",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 256
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "lastname",
+        "db": false,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "mail",
+        "db": false,
+        "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "mail",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 256
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -3235,14 +3549,13 @@
     "constraints": [
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -3252,14 +3565,13 @@
     "constraints": [
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -3269,14 +3581,13 @@
     "constraints": [
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -3286,14 +3597,13 @@
     "constraints": [
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -3305,14 +3615,12 @@
         "^o": "PresenceConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "min": -1,
         "max": -1
       },
@@ -3320,1178 +3628,84 @@
         "^o": "PresenceConstraint",
         "field_name": "identifier",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "identifier",
+        "field_name": [
+          "identifier"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": true,
-        "scope": [
-
-        ]
+        "type": "builtin"
       },
       {
         "^o": "LengthConstraint",
         "field_name": "identifier",
         "db": false,
-        "allow_nil": false,
         "min": -1,
         "max": -1
       },
       {
-        "^o": "UniqueConstraint",
-        "field_name": "wikipage_id",
+        "^o": "PresenceConstraint",
+        "field_name": "identifier",
         "db": false,
-        "allow_nil": false,
+        "cond": ""
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "wikipage_id"
+        ],
+        "db": false,
         "cond": "",
         "case_sensitive": true,
-        "scope": null
+        "type": "has_one"
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "name",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "public",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "active",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "templated",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "relations",
-    "class": "Relation",
-    "constraints": [
-      {
-        "^o": "NumericalConstraint",
-        "field_name": "delay",
-        "db": false,
-        "allow_nil": true,
-        "min": null,
-        "max": null
-      },
-      {
-        "^o": "PresenceConstraint",
-        "field_name": "from_id",
-        "db": true,
-        "allow_nil": false,
-        "cond": ""
-      },
-      {
-        "^o": "PresenceConstraint",
-        "field_name": "to_id",
-        "db": true,
-        "allow_nil": false,
-        "cond": ""
-      },
-      {
-        "^o": "PresenceConstraint",
-        "field_name": "hierarchy",
-        "db": true,
-        "allow_nil": false,
-        "cond": ""
-      },
-      {
-        "^o": "PresenceConstraint",
-        "field_name": "relates",
-        "db": true,
-        "allow_nil": false,
-        "cond": ""
-      },
-      {
-        "^o": "PresenceConstraint",
-        "field_name": "duplicates",
-        "db": true,
-        "allow_nil": false,
-        "cond": ""
-      },
-      {
-        "^o": "PresenceConstraint",
-        "field_name": "blocks",
-        "db": true,
-        "allow_nil": false,
-        "cond": ""
-      },
-      {
-        "^o": "PresenceConstraint",
-        "field_name": "follows",
-        "db": true,
-        "allow_nil": false,
-        "cond": ""
-      },
-      {
-        "^o": "PresenceConstraint",
-        "field_name": "includes",
-        "db": true,
-        "allow_nil": false,
-        "cond": ""
-      },
-      {
-        "^o": "PresenceConstraint",
-        "field_name": "requires",
-        "db": true,
-        "allow_nil": false,
-        "cond": ""
-      },
-      {
-        "^o": "PresenceConstraint",
-        "field_name": "count",
-        "db": true,
-        "allow_nil": false,
-        "cond": ""
-      },
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "Base",
-    "constraints": [
-      {
-        "^o": "ForeignKeyConstraint",
-        "field_name": "user",
-        "db": false,
-        "allow_nil": true,
-        "class_name": "User",
-        "fk_column_name": "user_id",
-        "polymorphic": null
-      },
-      {
-        "^o": "PresenceConstraint",
-        "field_name": "value",
-        "db": false,
-        "allow_nil": false,
-        "cond": ""
-      },
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "value",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": null,
-        "scope": [
-
-        ]
-      },
-      {
-        "^o": "InclusionConstraint",
-        "field_name": "type",
-        "db": false,
-        "allow_nil": false,
-        "values": [
-          "Base",
-          "Ago",
-          "All",
-          "AllAndNonBlank",
-          "BetweenDate",
-          "BetweenDateTime",
-          "Blocked",
-          "Blocks",
-          "BooleanEquals",
-          "BooleanEqualsStrict",
-          "BooleanNotEquals",
-          "CastedGreaterOrEqual",
-          "CastedLessOrEqual",
-          "Children",
-          "ClosedWorkPackages",
-          "Contains",
-          "Duplicated",
-          "Duplicates",
-          "Equals",
-          "Everywhere",
-          "Follows",
-          "GreaterOrEqual",
-          "In",
-          "InLessThan",
-          "InMoreThan",
-          "Includes",
-          "LessOrEqual",
-          "LessThanAgo",
-          "MoreThanAgo",
-          "None",
-          "NoneOrBlank",
-          "NotContains",
-          "NotEquals",
-          "OnDate",
-          "OnDateTime",
-          "OpenWorkPackages",
-          "OrderedWorkPackages",
-          "Parent",
-          "PartOf",
-          "Precedes",
-          "Relates",
-          "Required",
-          "Requires",
-          "ThisWeek",
-          "Today",
-          "EnterpriseTrialKey",
-          "HashedToken",
-          "Backup",
-          "API",
-          "AutoLogin",
-          "Invitation",
-          "Recovery",
-          "RSS"
+        "field_name": [
+          "identifier"
         ],
-        "type": "class_inheritance"
-      },
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "Ago",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "All",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "AllAndNonBlank",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "BetweenDate",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "BetweenDateTime",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "Blocked",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "Blocks",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "BooleanEquals",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "BooleanEqualsStrict",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "BooleanNotEquals",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "CastedGreaterOrEqual",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "CastedLessOrEqual",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "Children",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "ClosedWorkPackages",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "Contains",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "Duplicated",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "Duplicates",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "Equals",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "Everywhere",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "Follows",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "GreaterOrEqual",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "In",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "InLessThan",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "InMoreThan",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "Includes",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "LessOrEqual",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "LessThanAgo",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "MoreThanAgo",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "None",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "NoneOrBlank",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "NotContains",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "NotEquals",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "OnDate",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "OnDateTime",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "OpenWorkPackages",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "OrderedWorkPackages",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "Parent",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "PartOf",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "Precedes",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "Relates",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "Required",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "Requires",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "ThisWeek",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "Today",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "EnterpriseTrialKey",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "HashedToken",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "Backup",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "API",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "user_id",
-        "db": false,
-        "allow_nil": false,
+        "db": true,
         "cond": "",
         "case_sensitive": true,
-        "scope": null
+        "type": "db-index"
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "AutoLogin",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "Invitation",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "Recovery",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
-      }
-    ]
-  },
-  {
-    "table": "'tokens'",
-    "class": "RSS",
-    "constraints": [
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "user_id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": true,
-        "scope": null
-      },
-      {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -4503,7 +3717,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "project",
         "db": false,
-        "allow_nil": true,
         "class_name": "Project",
         "fk_column_name": "project_id",
         "polymorphic": null
@@ -4512,7 +3725,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "user",
         "db": false,
-        "allow_nil": true,
         "class_name": "User",
         "fk_column_name": "user_id",
         "polymorphic": null
@@ -4521,55 +3733,155 @@
         "^o": "PresenceConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 255
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "name",
+        "db": false,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "name",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "user_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "is_public",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "display_sums",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
+      }
+    ]
+  },
+  {
+    "table": "relations",
+    "class": "Relation",
+    "constraints": [
+      {
+        "^o": "NumericalConstraint",
+        "field_name": "delay",
+        "db": false,
+        "min": null,
+        "max": null
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "from_id",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "to_id",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "hierarchy",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "relates",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "duplicates",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "blocks",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "follows",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "includes",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "requires",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "count",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "from_id",
+          "to_id",
+          "hierarchy",
+          "relates",
+          "duplicates",
+          "blocks",
+          "follows",
+          "includes",
+          "requires"
+        ],
+        "db": true,
+        "cond": "",
+        "case_sensitive": true,
+        "type": "db-index"
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "id"
+        ],
+        "db": false,
+        "cond": "",
+        "case_sensitive": false,
+        "type": "pk"
       }
     ]
   },
@@ -4581,7 +3893,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "project",
         "db": false,
-        "allow_nil": true,
         "class_name": "Project",
         "fk_column_name": "project_id",
         "polymorphic": null
@@ -4590,7 +3901,6 @@
         "^o": "LengthConstraint",
         "field_name": "password",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 255
       },
@@ -4598,7 +3908,6 @@
         "^o": "InclusionConstraint",
         "field_name": "type",
         "db": false,
-        "allow_nil": false,
         "values": [
           "Repository",
           "Repository::Git",
@@ -4608,32 +3917,30 @@
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "project_id",
+        "field_name": [
+          "project_id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": true,
-        "scope": null
+        "type": "has_one"
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "project_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "url",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "login",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -4641,7 +3948,6 @@
         "^o": "LengthConstraint",
         "field_name": "path_encoding",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -4649,7 +3955,6 @@
         "^o": "LengthConstraint",
         "field_name": "log_encoding",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -4657,26 +3962,23 @@
         "^o": "PresenceConstraint",
         "field_name": "scm_type",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "required_storage_bytes",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -4688,19 +3990,17 @@
         "^o": "PresenceConstraint",
         "field_name": "url",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -4712,26 +4012,29 @@
         "^o": "PresenceConstraint",
         "field_name": "url",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "FormatConstraint",
         "field_name": "url",
         "db": false,
-        "allow_nil": false,
         "format": "/\\A(http|https|svn(\\+[^\\s:\\/\\\\]+)?|file):\\/\\/.+\\z/i"
       },
       {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
+        "^o": "PresenceConstraint",
+        "field_name": "url",
         "db": false,
-        "allow_nil": false,
+        "cond": ""
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "id"
+        ],
+        "db": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -4743,33 +4046,29 @@
         "^o": "PresenceConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "min": -1,
         "max": -1
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "name",
+        "field_name": [
+          "name"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": true,
-        "scope": [
-
-        ]
+        "type": "builtin"
       },
       {
         "^o": "InclusionConstraint",
         "field_name": "type",
         "db": false,
-        "allow_nil": false,
         "values": [
           "Role",
           "GlobalRole"
@@ -4780,7 +4079,6 @@
         "^o": "LengthConstraint",
         "field_name": "name",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -4788,27 +4086,24 @@
         "^o": "PresenceConstraint",
         "field_name": "builtin",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "type",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -4818,14 +4113,13 @@
     "constraints": [
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -4837,7 +4131,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "role",
         "db": false,
-        "allow_nil": true,
         "class_name": "Role",
         "fk_column_name": "role_id",
         "polymorphic": null
@@ -4846,33 +4139,29 @@
         "^o": "PresenceConstraint",
         "field_name": "permission",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "created_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "updated_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -4882,20 +4171,24 @@
     "constraints": [
       {
         "^o": "UniqueConstraint",
-        "field_name": "name",
+        "field_name": [
+          "name"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": null,
-        "scope": [
-
-        ]
+        "type": "builtin"
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "name",
+        "db": false,
+        "cond": ""
       },
       {
         "^o": "InclusionConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "values": [
           {
             "^o": "Proc"
@@ -4904,30 +4197,39 @@
         "type": "builtin"
       },
       {
+        "^o": "PresenceConstraint",
+        "field_name": "name",
+        "db": false,
+        "cond": ""
+      },
+      {
         "^o": "NumericalConstraint",
         "field_name": "value",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": null
       },
       {
         "^o": "PresenceConstraint",
+        "field_name": "value",
+        "db": false,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
         "field_name": "name",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -4939,7 +4241,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "color",
         "db": false,
-        "allow_nil": true,
         "class_name": "Color",
         "fk_column_name": "color_id",
         "polymorphic": null
@@ -4948,25 +4249,22 @@
         "^o": "PresenceConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "name",
+        "field_name": [
+          "name"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "builtin"
       },
       {
         "^o": "LengthConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "min": -1,
         "max": -1
       },
@@ -4974,7 +4272,6 @@
         "^o": "NumericalConstraint",
         "field_name": "default_done_ratio",
         "db": false,
-        "allow_nil": true,
         "min": 0,
         "max": 100
       },
@@ -4982,7 +4279,6 @@
         "^o": "InclusionConstraint",
         "field_name": "type",
         "db": false,
-        "allow_nil": false,
         "values": [
           "Status",
           "Status::InexistentStatus"
@@ -4991,18 +4287,18 @@
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "project_id",
+        "field_name": [
+          "project_id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": true,
-        "scope": null
+        "type": "has_one"
       },
       {
         "^o": "LengthConstraint",
         "field_name": "name",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -5010,40 +4306,35 @@
         "^o": "PresenceConstraint",
         "field_name": "is_closed",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "is_default",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "created_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "updated_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -5053,14 +4344,72 @@
     "constraints": [
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
+      }
+    ]
+  },
+  {
+    "table": "tokens",
+    "class": "Token::Base",
+    "constraints": [
+      {
+        "^o": "ForeignKeyConstraint",
+        "field_name": "user",
+        "db": false,
+        "class_name": "User",
+        "fk_column_name": "user_id",
+        "polymorphic": null
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "value",
+        "db": false,
+        "cond": ""
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "value"
+        ],
+        "db": false,
+        "cond": "",
+        "case_sensitive": null,
+        "type": "builtin"
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "value",
+        "db": false,
+        "cond": ""
+      },
+      {
+        "^o": "LengthConstraint",
+        "field_name": "value",
+        "db": true,
+        "min": 0,
+        "max": 0
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "created_at",
+        "db": true,
+        "cond": ""
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "id"
+        ],
+        "db": false,
+        "cond": "",
+        "case_sensitive": false,
+        "type": "pk"
       }
     ]
   },
@@ -5072,7 +4421,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "color",
         "db": false,
-        "allow_nil": true,
         "class_name": "Color",
         "fk_column_name": "color_id",
         "polymorphic": null
@@ -5081,25 +4429,22 @@
         "^o": "PresenceConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "name",
+        "field_name": [
+          "name"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "builtin"
       },
       {
         "^o": "LengthConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "min": -1,
         "max": -1
       },
@@ -5107,18 +4452,22 @@
         "^o": "InclusionConstraint",
         "field_name": "is_default",
         "db": false,
-        "allow_nil": false,
         "values": [
           true,
           false
         ],
         "type": "builtin"
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "is_default",
+        "db": false,
+        "cond": ""
       },
       {
         "^o": "InclusionConstraint",
         "field_name": "is_milestone",
         "db": false,
-        "allow_nil": false,
         "values": [
           true,
           false
@@ -5126,15 +4475,20 @@
         "type": "builtin"
       },
       {
-        "^o": "UniqueConstraint",
-        "field_name": "id",
+        "^o": "PresenceConstraint",
+        "field_name": "is_milestone",
         "db": false,
-        "allow_nil": false,
+        "cond": ""
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "id"
+        ],
+        "db": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -5146,7 +4500,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "user",
         "db": false,
-        "allow_nil": true,
         "class_name": "User",
         "fk_column_name": "user_id",
         "polymorphic": null
@@ -5155,7 +4508,6 @@
         "^o": "InclusionConstraint",
         "field_name": "type",
         "db": false,
-        "allow_nil": false,
         "values": [
           "UserPassword",
           "UserPassword::Bcrypt",
@@ -5167,14 +4519,12 @@
         "^o": "PresenceConstraint",
         "field_name": "user_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "hashed_password",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -5182,7 +4532,6 @@
         "^o": "LengthConstraint",
         "field_name": "salt",
         "db": true,
-        "allow_nil": true,
         "min": 0,
         "max": 0
       },
@@ -5190,19 +4539,17 @@
         "^o": "PresenceConstraint",
         "field_name": "type",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -5212,14 +4559,13 @@
     "constraints": [
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -5229,14 +4575,13 @@
     "constraints": [
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -5248,7 +4593,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "user",
         "db": false,
-        "allow_nil": true,
         "class_name": "User",
         "fk_column_name": "user_id",
         "polymorphic": null
@@ -5257,35 +4601,33 @@
         "^o": "PresenceConstraint",
         "field_name": "user",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "user_id",
+        "field_name": [
+          "user_id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": true,
-        "scope": null
+        "type": "has_one"
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "user_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -5297,7 +4639,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "project",
         "db": false,
-        "allow_nil": true,
         "class_name": "Project",
         "fk_column_name": "project_id",
         "polymorphic": null
@@ -5306,39 +4647,47 @@
         "^o": "PresenceConstraint",
         "field_name": "name",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "name",
+        "field_name": [
+          "name",
+          "project_id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-          "project_id"
-        ]
+        "type": "builtin"
       },
       {
         "^o": "FormatConstraint",
         "field_name": "effective_date",
         "db": false,
-        "allow_nil": false,
         "format": "/\\A\\d{4}-\\d{2}-\\d{2}\\z/"
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "effective_date",
+        "db": false,
+        "cond": ""
       },
       {
         "^o": "FormatConstraint",
         "field_name": "start_date",
         "db": false,
-        "allow_nil": false,
         "format": "/\\A\\d{4}-\\d{2}-\\d{2}\\z/"
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "start_date",
+        "db": false,
+        "cond": ""
       },
       {
         "^o": "InclusionConstraint",
         "field_name": "status",
         "db": false,
-        "allow_nil": false,
         "values": [
           "open",
           "locked",
@@ -5348,35 +4697,37 @@
       },
       {
         "^o": "PresenceConstraint",
+        "field_name": "status",
+        "db": false,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
         "field_name": "project_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "name",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "sharing",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -5388,7 +4739,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "watchable",
         "db": false,
-        "allow_nil": true,
         "class_name": "Watchable",
         "fk_column_name": "watchable_id",
         "polymorphic": true
@@ -5397,7 +4747,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "user",
         "db": false,
-        "allow_nil": true,
         "class_name": "User",
         "fk_column_name": "user_id",
         "polymorphic": null
@@ -5406,52 +4755,53 @@
         "^o": "PresenceConstraint",
         "field_name": "watchable",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "user",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "user_id",
-        "db": false,
-        "allow_nil": false,
-        "cond": "",
-        "case_sensitive": null,
-        "scope": [
+        "field_name": [
+          "user_id",
           "watchable_type",
           "watchable_id"
-        ]
+        ],
+        "db": false,
+        "cond": "",
+        "case_sensitive": null,
+        "type": "builtin"
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "user_id",
+        "db": false,
+        "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "watchable_type",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "watchable_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -5463,7 +4813,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "project",
         "db": false,
-        "allow_nil": true,
         "class_name": "Project",
         "fk_column_name": "project_id",
         "polymorphic": null
@@ -5472,63 +4821,57 @@
         "^o": "PresenceConstraint",
         "field_name": "start_page",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "project_id",
+        "field_name": [
+          "project_id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": true,
-        "scope": null
+        "type": "has_one"
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "project_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "start_page",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "status",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "created_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "updated_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -5540,7 +4883,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "page",
         "db": false,
-        "allow_nil": true,
         "class_name": "WikiPage",
         "fk_column_name": "page_id",
         "polymorphic": null
@@ -5549,7 +4891,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "author",
         "db": false,
-        "allow_nil": true,
         "class_name": "User",
         "fk_column_name": "author_id",
         "polymorphic": null
@@ -5558,50 +4899,46 @@
         "^o": "LengthConstraint",
         "field_name": "comments",
         "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 255
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "page_id",
+        "field_name": [
+          "page_id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": true,
-        "scope": null
+        "type": "has_one"
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "page_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "updated_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "lock_version",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -5613,7 +4950,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "wiki",
         "db": false,
-        "allow_nil": true,
         "class_name": "Wiki",
         "fk_column_name": "wiki_id",
         "polymorphic": null
@@ -5622,68 +4958,70 @@
         "^o": "PresenceConstraint",
         "field_name": "title",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "slug",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "wiki_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "title",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "created_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "protected",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "slug",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "updated_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "wiki_id",
+          "slug"
+        ],
+        "db": true,
+        "cond": "",
+        "case_sensitive": true,
+        "type": "db-index"
+      },
+      {
+        "^o": "UniqueConstraint",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -5695,7 +5033,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "wiki",
         "db": false,
-        "allow_nil": true,
         "class_name": "Wiki",
         "fk_column_name": "wiki_id",
         "polymorphic": null
@@ -5704,56 +5041,61 @@
         "^o": "PresenceConstraint",
         "field_name": "title",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "redirects_to",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "LengthConstraint",
         "field_name": "title",
         "db": false,
-        "allow_nil": false,
-        "min": null,
-        "max": 255
-      },
-      {
-        "^o": "LengthConstraint",
-        "field_name": "redirects_to",
-        "db": false,
-        "allow_nil": false,
         "min": null,
         "max": 255
       },
       {
         "^o": "PresenceConstraint",
+        "field_name": "title",
+        "db": false,
+        "cond": ""
+      },
+      {
+        "^o": "LengthConstraint",
+        "field_name": "redirects_to",
+        "db": false,
+        "min": null,
+        "max": 255
+      },
+      {
+        "^o": "PresenceConstraint",
+        "field_name": "redirects_to",
+        "db": false,
+        "cond": ""
+      },
+      {
+        "^o": "PresenceConstraint",
         "field_name": "wiki_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "created_at",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -5765,7 +5107,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "project",
         "db": false,
-        "allow_nil": true,
         "class_name": "Project",
         "fk_column_name": "project_id",
         "polymorphic": null
@@ -5774,7 +5115,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "type",
         "db": false,
-        "allow_nil": true,
         "class_name": "Type",
         "fk_column_name": "type_id",
         "polymorphic": null
@@ -5783,7 +5123,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "status",
         "db": false,
-        "allow_nil": true,
         "class_name": "Status",
         "fk_column_name": "status_id",
         "polymorphic": null
@@ -5792,7 +5131,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "author",
         "db": false,
-        "allow_nil": true,
         "class_name": "User",
         "fk_column_name": "author_id",
         "polymorphic": null
@@ -5801,7 +5139,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "assigned_to",
         "db": false,
-        "allow_nil": true,
         "class_name": "Principal",
         "fk_column_name": "assigned_to_id",
         "polymorphic": null
@@ -5810,7 +5147,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "responsible",
         "db": false,
-        "allow_nil": true,
         "class_name": "Principal",
         "fk_column_name": "responsible_id",
         "polymorphic": null
@@ -5819,7 +5155,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "version",
         "db": false,
-        "allow_nil": true,
         "class_name": "Version",
         "fk_column_name": "version_id",
         "polymorphic": null
@@ -5828,7 +5163,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "priority",
         "db": false,
-        "allow_nil": true,
         "class_name": "IssuePriority",
         "fk_column_name": "priority_id",
         "polymorphic": null
@@ -5837,7 +5171,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "category",
         "db": false,
-        "allow_nil": true,
         "class_name": "Category",
         "fk_column_name": "category_id",
         "polymorphic": null
@@ -5846,7 +5179,6 @@
         "^o": "InclusionConstraint",
         "field_name": "type",
         "db": false,
-        "allow_nil": false,
         "values": [
           "WorkPackage",
           "WorkPackage::InexistentWorkPackage"
@@ -5857,61 +5189,53 @@
         "^o": "PresenceConstraint",
         "field_name": "type_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "project_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "subject",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "status_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "author_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "lock_version",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "done_ratio",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -5921,14 +5245,13 @@
     "constraints": [
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   },
@@ -5940,7 +5263,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "role",
         "db": false,
-        "allow_nil": true,
         "class_name": "Role",
         "fk_column_name": "role_id",
         "polymorphic": null
@@ -5949,7 +5271,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "old_status",
         "db": false,
-        "allow_nil": true,
         "class_name": "Status",
         "fk_column_name": "old_status_id",
         "polymorphic": null
@@ -5958,7 +5279,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "new_status",
         "db": false,
-        "allow_nil": true,
         "class_name": "Status",
         "fk_column_name": "new_status_id",
         "polymorphic": null
@@ -5967,7 +5287,6 @@
         "^o": "ForeignKeyConstraint",
         "field_name": "type",
         "db": false,
-        "allow_nil": true,
         "class_name": "Type",
         "fk_column_name": "type_id",
         "polymorphic": null
@@ -5976,75 +5295,65 @@
         "^o": "PresenceConstraint",
         "field_name": "role",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "old_status",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "new_status",
         "db": false,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "type_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "old_status_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "new_status_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "role_id",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "assignee",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "PresenceConstraint",
         "field_name": "author",
         "db": true,
-        "allow_nil": false,
         "cond": ""
       },
       {
         "^o": "UniqueConstraint",
-        "field_name": "id",
+        "field_name": [
+          "id"
+        ],
         "db": false,
-        "allow_nil": false,
         "cond": "",
         "case_sensitive": false,
-        "scope": [
-
-        ]
+        "type": "pk"
       }
     ]
   }
