@@ -23,7 +23,7 @@ thread_pool = threading.Semaphore(multiprocessing.cpu_count())
 
 from config import CONNECT_MAP, FileType, get_filename
 
-def rewrite_batch(q):
+def rewrite_batch(q, rewrite_cnt, total_candidate_cnt):
     start = time.time()
     # =================Enumerate Candidates================
     rewritten_queries = []
@@ -113,7 +113,6 @@ if __name__ == '__main__':
         parser.add_argument('--db', action='store_true', \
                 help='only use db constraints to perform optimization')
         args = parser.parse_args()
-        
         appname =  args.app
         if args.prove:
             query_filename = get_filename(FileType.TEST_PROVE_Q, appname)
@@ -124,12 +123,14 @@ if __name__ == '__main__':
         query_cnt = 10000
         rules = [rule.RemovePredicate, rule.RemoveDistinct, rule.RewriteNullPredicate,
                 rule.AddLimitOne, rule.RemoveJoin, rule.ReplaceOuterJoin]
+        # constraint_filename = "../constraints/redmine" #TEMP
         constraints = Loader.load_constraints(constraint_filename)
         if args.db:
             print("========Only use DB constraints to perform optimization======")
             print("[Before filtering DB constraints] ", len(constraints))
             constraints = [c for c in constraints if c.db == True]
             print("[After filtering DB constraints] ", len(constraints))
+        # query_filename = "../queries/redmine/redmine.pk" #TEMP
         queries = Loader.load_queries(query_filename, offset, query_cnt)
         rewriter = Rewriter()
         rewriter.set_rules(rules)
@@ -141,11 +142,10 @@ if __name__ == '__main__':
 
         for q in tqdm(queries):
             thread_pool.acquire()
-            threading.Thread(target=rewrite_batch, args=[q]).start()
-            
+            threading.Thread(target=rewrite_batch, args=[q, rewrite_cnt, total_candidate_cnt]).start()
         
         exp_recorder.record("candidate info",  total_candidate_cnt)
-        print("Rewrite Number %d" % rewrite_cnt)
-        print("Average # of candidates %f" % (sum(total_candidate_cnt) / len(total_candidate_cnt)))
+        # print("Rewrite Number %d" % rewrite_cnt)
+        # print("Average # of candidates %f" % (sum(total_candidate_cnt) / len(total_candidate_cnt)))
     except:
         os.killpg(0, signal.SIGKILL)
