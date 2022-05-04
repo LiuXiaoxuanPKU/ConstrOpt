@@ -9,6 +9,7 @@ from evaluator import Evaluator
 from extract_rule import ExtractQueryRule
 from utils import GlobalExpRecorder, generate_query_param_single
 from tqdm import tqdm
+from bench_utils import get_valid_queries
 
 # ------------------------------------------------------------------------------
 # This script counts queries has table column with certain type(s) of constraints
@@ -56,21 +57,6 @@ def main(verbal) -> None:
 #################################
 #        helper functions       #
 #################################
-def get_valid_queries(queries, connect_str):
-    print("==========Get Valid Queries============")
-    valid_queries = []
-    for q in tqdm(queries):
-        try:
-            q_param = generate_query_param_single(q.q_raw, connect_str, {})
-            if q_param is None:
-                continue
-            Evaluator.evaluate_query(q_param, connect_str)
-            valid_queries.append(q)
-        except:
-            print(traceback.format_exc())
-            pass
-    print("Total queries: %d, valid queries: %d" % (len(queries), len(valid_queries)))
-    return valid_queries
         
 # load queries
 def load_queries(appname) -> list:

@@ -23,7 +23,7 @@ class ExtractQueryRule(rule.Rule):
         if not self.contain_join(q):
             table = from_clause
             if isinstance(table, dict):
-                print("[Warning] Does not handle dict table (alias) %s for now" % table)
+                # print("[Warning] Does not handle dict table (alias) %s for now" % table)
                 return []
             if not table in self.cs_tables:
                 return []
@@ -106,7 +106,7 @@ class ExtractQueryRule(rule.Rule):
                 value = value[aggr_op]
             if "*" in value:
                 return table in self.inclusion_t
-            elif not isinstance(value, str):
+            if not isinstance(value, str):
                 print("[Warning] Does not handle value %s of type %s" % (value, type(value)))
                 return False
             elif table is not None and value in self.table_to_field[table]:
@@ -142,10 +142,10 @@ class ExtractQueryRule(rule.Rule):
             if op == "not":
                 clause = clause[op]
                 op = list(clause.keys())[0]
-            if isinstance(clause[op][0], int):
-                return False
             if not isinstance(clause[op], list):
                 print("[Warning] 1. Does not handle predicate %s of type %s for now" % (clause[op], type(clause[op])))
+                return False
+            if isinstance(clause[op][0], int):
                 return False
             if not isinstance(clause[op][0], str):
                 print("[Warning] 2. Does not handle predicate %s of type %s for now" % (clause[op][0], type(clause[op][0])))
@@ -154,6 +154,9 @@ class ExtractQueryRule(rule.Rule):
 
     # check on_clause inside from_clause
     def check_join_from(self, clause) -> bool:
+        if not isinstance(clause, dict):
+            print("[Warning] Cannot handle join of %s, expect dict" % clause)
+            return False
         if "on" in clause[1].keys():
             on_clause = clause[1]["on"]
             if self.check_where(on_clause):
@@ -162,6 +165,9 @@ class ExtractQueryRule(rule.Rule):
 
     # check where clauses, return true if where clause contain inclusion constraints, otherwise false
     def check_where(self, clause) -> bool:
+        if not isinstance(clause, dict):
+            print("[Warning] Cannot handle clause of %s, expect dict" % clause)
+            return False
         op = list(clause.keys())[0]
         if op == "and" or op == "or":
             clause_list = clause[op]

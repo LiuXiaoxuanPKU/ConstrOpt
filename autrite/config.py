@@ -14,14 +14,15 @@ class FileType(Enum):
     PRECHECK_STR2INT_NUM = 11
     
     TEST_PROVE_Q =12
+    ENUM_EVAL = 13
   
 def get_filename(_type, appname):
 
     m = {
             # input query, constraint, create table sql
             FileType.TEST_PROVE_Q : "log/%s/prove.sql" % appname,
-            FileType.RAW_QUERY : "/home/ubuntu/ConstrOpt/queries/%s/%s.pk" % (appname, appname),
-            FileType.CONSTRAINT : "/home/ubuntu/ConstrOpt/constraints/%s"  % (appname),
+            FileType.RAW_QUERY : "../queries/%s/%s.pk" % (appname, appname),
+            FileType.CONSTRAINT : "../constraints/%s"  % (appname),
             FileType.VERIFIER_INPUT : "log/%s/cosette/create.sql" % appname,
             # output sqls for cosette
             FileType.VERIFIER_OUTPUT : "log/%s/cosette/" % appname,   
@@ -33,6 +34,7 @@ def get_filename(_type, appname):
             FileType.EMPTY_RESULT_QUERY: "log/%s/empty_query" % appname,
             FileType.REWRITE : "log/%s/%s_test_rewrite"  % (appname, appname),
             FileType.PRECHECK_STR2INT_NUM : "log/precheck_strtoint_num",
+            FileType.ENUM_EVAL : "log/%s/enum_evaluation" % (appname)
     }
     return m[_type]
 

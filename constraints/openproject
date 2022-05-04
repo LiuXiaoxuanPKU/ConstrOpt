@@ -3858,16 +3858,6 @@
         "max": 100
       },
       {
-        "^o": "InclusionConstraint",
-        "field_name": "type",
-        "db": false,
-        "values": [
-          "Status",
-          "Status::InexistentStatus"
-        ],
-        "type": "class_inheritance"
-      },
-      {
         "^o": "LengthConstraint",
         "field_name": "name",
         "db": true,
@@ -3898,22 +3888,6 @@
         "db": true,
         "cond": ""
       },
-      {
-        "^o": "UniqueConstraint",
-        "field_name": [
-          "id"
-        ],
-        "db": false,
-        "cond": "",
-        "case_sensitive": false,
-        "type": "pk"
-      }
-    ]
-  },
-  {
-    "table": "statuses",
-    "class": "Status::InexistentStatus",
-    "constraints": [
       {
         "^o": "UniqueConstraint",
         "field_name": [
@@ -4732,16 +4706,6 @@
         "class_name": "Category",
         "fk_column_name": "category_id",
         "polymorphic": null
-      },
-      {
-        "^o": "InclusionConstraint",
-        "field_name": "type",
-        "db": false,
-        "values": [
-          "WorkPackage",
-          "WorkPackage::InexistentWorkPackage"
-        ],
-        "type": "class_inheritance"
       },
       {
         "^o": "PresenceConstraint",

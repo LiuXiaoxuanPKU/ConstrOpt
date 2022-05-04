@@ -3663,13 +3663,6 @@
         "cond": ""
       },
       {
-        "^o": "InclusionConstraint",
-        "field_name": "display_only_when_signed_in",
-        "db": false,
-        "values": [],
-        "type": "builtin"
-      },
-      {
         "^o": "PresenceConstraint",
         "field_name": "created_at",
         "db": true,

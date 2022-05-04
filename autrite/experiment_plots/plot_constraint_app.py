@@ -53,8 +53,10 @@ def plot_app(appname):
             model_values.append(0)
     
     width = 0.4
-    ax.bar(x - width/2, model_values, width, edgecolor='black', color='#2596be', label = "Model")
-    ax.bar(x + width/2, db_values, width, edgecolor='black', color='#e28743', label = "DB")
+#    ax.bar(x - width/2, model_values, width, edgecolor='black', color='#2596be', label = "Model")
+#    ax.bar(x + width/2, db_values, width, edgecolor='black', color='#e28743', label = "DB")
+    ax.bar(x - width/2, model_values, width, label = "Model")
+    ax.bar(x + width/2, db_values, width, label = "DB")
     ax.set_xticks(x)
     ax.set_xticklabels([CONSTRAINT2NAME[k] for k in keys], rotation = 10)
     

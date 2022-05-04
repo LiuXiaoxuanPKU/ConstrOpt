@@ -42,7 +42,10 @@ class Loader:
                     )
                 else:
                     print("[Error] Unsupport constraint type ", obj)
-                    exit(1)
+                    continue
+                    # exit(1)
+                if c.table is None:
+                    continue
                 constraints.append(c)
         print("======================Load %d constraints" % len(constraints))
         return constraints

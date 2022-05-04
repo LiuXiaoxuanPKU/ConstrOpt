@@ -63,11 +63,16 @@ fig.set_size_inches(20, 8)
 
 x = np.arange(len(labels))  # the label locations
 width = 0.4
-ax.bar(x, [0] * len(labels), hatch='//', edgecolor='black', label = "Defined both in Model and DB", color="white")
-ax.bar(x - width/2, dup_values, width, edgecolor='black', hatch='//', color='#efccc9', alpha=0.5)
-ax.bar(x - width/2, model_wo_dups, width, edgecolor='black', bottom = dup_values, color='#efccc9', label = "Model Constraints")
-ax.bar(x + width/2, dup_values, width, edgecolor='black', hatch='//', color='#713b28', alpha=0.5)
-ax.bar(x + width/2, db_wo_dups, width, edgecolor='black', bottom = dup_values, color='#713b28', label = "DB Constraints")
+#ax.bar(x, [0] * len(labels), hatch='//', edgecolor='black', label = "Defined both in Model and DB", color="white")
+#ax.bar(x - width/2, dup_values, width, edgecolor='black', hatch='//', color='#efccc9', alpha=0.5)
+#ax.bar(x - width/2, model_wo_dups, width, edgecolor='black', bottom = dup_values, color='#efccc9', label = "Model Constraints")
+#ax.bar(x + width/2, dup_values, width, edgecolor='black', hatch='//', color='#713b28', alpha=0.5)
+#ax.bar(x + width/2, db_wo_dups, width, edgecolor='black', bottom = dup_values, color='#713b28', label = "DB Constraints")
+ax.bar(x, [0] * len(labels), hatch='//', label = "Defined both in Model and DB", color="white")
+ax.bar(x - width/2, dup_values, width, hatch='//', alpha=0.5)
+ax.bar(x - width/2, model_wo_dups, width,  bottom = dup_values, color='#2471A3', label = "Model Constraints")
+ax.bar(x + width/2, dup_values, width, hatch='//', alpha=0.5)
+ax.bar(x + width/2, db_wo_dups, width, bottom = dup_values, color='#E67E22', label = "DB Constraints")
 ax.set_xticks(x)
 ax.set_xticklabels(labels)
 
@@ -79,4 +84,4 @@ ax.set_ylabel("Number of constraints", size = 40)
 
 ax.tick_params(axis='both', which='major', labelsize=40)
 ax.legend(prop={'size': 30})
-plt.savefig("/home/ubuntu/ConstrOpt/figures/7.2/constraint.pdf")
+plt.savefig("/home/ubuntu/ConstrOpt_str2int/figures/7.2/constraint.pdf")
