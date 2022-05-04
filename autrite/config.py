@@ -13,7 +13,9 @@ class FileType(Enum):
     VERIFIER_OUTPUT = 10
     PRECHECK_STR2INT_NUM = 11
     
-    TEST_PROVE_Q =12
+    TEST_PROVE_Q = 12
+    
+    ENUM_EVAL = 13
   
 def get_filename(_type, appname):
 
@@ -33,6 +35,7 @@ def get_filename(_type, appname):
             FileType.EMPTY_RESULT_QUERY: "log/%s/empty_query" % appname,
             FileType.REWRITE : "log/%s/%s_test_rewrite"  % (appname, appname),
             FileType.PRECHECK_STR2INT_NUM : "log/precheck_strtoint_num",
+            FileType.ENUM_EVAL : "log/%s/enum_evaluation" % (appname),
     }
     return m[_type]
 

@@ -1,0 +1,10 @@
+{"sql": "SELECT users.* FROM users", "before": 1.5230000000000001, "after": 1.7052}
+{"sql": "SELECT COUNT(*) FROM news", "before": 2.1984, "after": 2.2492}
+{"sql": "SELECT roles.* FROM roles", "before": 1.2602, "after": 2.0425999999999997}
+{"sql": "SELECT COUNT(*) FROM roles", "before": 0.0674, "after": 0.082}
+{"sql": "SELECT COUNT(*) FROM wikis", "before": 1.0832, "after": 1.133}
+{"sql": "SELECT COUNT(*) FROM users", "before": 1.359, "after": 1.507}
+{"sql": "SELECT COUNT(*) FROM tokens", "before": 1.1694, "after": 1.2808}
+{"sql": "SELECT issues.* FROM issues", "before": 3.3308, "after": 3.5034}
+{"sql": "SELECT COUNT(*) FROM issues", "before": 2.6124, "after": 2.6672000000000002}
+{"sql": "SELECT COUNT(*) FROM boards", "before": 1.2798, "after": 1.3024}
