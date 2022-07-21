@@ -7,7 +7,7 @@ import rule
 from loader import Loader
 from rewriter import Rewriter
 from evaluator import Evaluator
-from autrite.Provedumper import ProveDumper
+from Provedumper import ProveDumper
 from TestVerifier import TestVerifier
 from mo_sql_parsing import format, parse
 from tqdm import tqdm
